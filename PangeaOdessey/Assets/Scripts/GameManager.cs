@@ -40,7 +40,11 @@ public class GameManager : MonoBehaviour
     [Header("# Panel")]
     public GameObject clear;
     public GameObject gameover;
-    
+
+    public Sprite[] headSpriteList;
+    public string[] headNameList;
+    public int[] headStatList;
+
     void Awake()
     {
         instance = this;
