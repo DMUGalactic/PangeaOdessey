@@ -20,6 +20,7 @@ public class EquipmentSlotUI : BaseSlotUI
             if (currentItem != null)
             {
                 InventoryManager.Instance.UnequipItem(currentItem.itemName);
+                Debug.Log($"장비 해제: {currentItem.itemName}");
             }
             
             // 아이템을 교환합니다.
@@ -27,11 +28,13 @@ public class EquipmentSlotUI : BaseSlotUI
             
             // 새로운 아이템을 장착합니다.
             InventoryManager.Instance.EquipItem(droppedItem.itemName);
+            Debug.Log($"장비 장착: {droppedItem.itemName}");
         }
         else
         {
             // 잘못된 장비 타입이면 원래 위치로 돌려보냅니다.
             droppedItem.GetComponent<DraggableUI>().ReturnToOriginalSlot();
+            Debug.Log($"잘못된 장비 타입: {droppedItem.itemName}을(를) {equipmentType} 슬롯에 장착할 수 없습니다.");
         }
     }
 
@@ -42,6 +45,7 @@ public class EquipmentSlotUI : BaseSlotUI
         if (currentItem != null)
         {
             InventoryManager.Instance.UnequipItem(currentItem.itemName);
+             Debug.Log($"장비 해제: {currentItem.itemName}");
         }
         // 기본 RemoveItem 메서드를 호출합니다.
         base.RemoveItem();

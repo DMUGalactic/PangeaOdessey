@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 // ItemSlotUI: 인벤토리의 아이템 슬롯을 관리하는 클래스입니다.
@@ -17,6 +18,7 @@ public class ItemSlotUI : BaseSlotUI
             {
                 // 장비 슬롯에서 왔다면, 해당 아이템을 장비 해제합니다.
                 InventoryManager.Instance.UnequipItem(droppedItem.itemName);
+                Debug.Log($"장비 해제 (인벤토리로 이동): {droppedItem.itemName}");
             }
             
             // 아이템을 현재 슬롯과 교환합니다.
