@@ -14052,6 +14052,71 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244486344}
   m_CullTransparentMesh: 1
+--- !u!1001 &1249544840
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 866829735663616562, guid: 1e126f96ebcf4245a3328353992d46f6, type: 3}
+      propertyPath: m_Name
+      value: BlueDragon
+      objectReference: {fileID: 0}
+    - target: {fileID: 866829735663616565, guid: 1e126f96ebcf4245a3328353992d46f6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.2151127
+      objectReference: {fileID: 0}
+    - target: {fileID: 866829735663616565, guid: 1e126f96ebcf4245a3328353992d46f6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.40610734
+      objectReference: {fileID: 0}
+    - target: {fileID: 866829735663616565, guid: 1e126f96ebcf4245a3328353992d46f6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866829735663616565, guid: 1e126f96ebcf4245a3328353992d46f6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 866829735663616565, guid: 1e126f96ebcf4245a3328353992d46f6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866829735663616565, guid: 1e126f96ebcf4245a3328353992d46f6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866829735663616565, guid: 1e126f96ebcf4245a3328353992d46f6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866829735663616565, guid: 1e126f96ebcf4245a3328353992d46f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866829735663616565, guid: 1e126f96ebcf4245a3328353992d46f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866829735663616565, guid: 1e126f96ebcf4245a3328353992d46f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 866829735663616567, guid: 1e126f96ebcf4245a3328353992d46f6, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5b2905789421483fbbed0750bf55ace0, type: 2}
+    - target: {fileID: 3810028474657964033, guid: 1e126f96ebcf4245a3328353992d46f6, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 398437029}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1e126f96ebcf4245a3328353992d46f6, type: 3}
 --- !u!1 &1304379420 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1482633305466880164, guid: 8bc0cb2403eb525469d4e8f1064353d2, type: 3}
@@ -14926,9 +14991,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4eb0c3739c6b74e9549aae31c38166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 2
-  damageInterval: 2
-  damageEffectPrefab: {fileID: 0}
 --- !u!114 &1581536958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14941,9 +15003,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4eb0c3739c6b74e9549aae31c38166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 2
-  damageInterval: 2
-  damageEffectPrefab: {fileID: 0}
 --- !u!114 &1581536959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14956,9 +15015,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4eb0c3739c6b74e9549aae31c38166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 2
-  damageInterval: 2
-  damageEffectPrefab: {fileID: 0}
 --- !u!114 &1581536960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14971,9 +15027,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4eb0c3739c6b74e9549aae31c38166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 2
-  damageInterval: 2
-  damageEffectPrefab: {fileID: 0}
 --- !u!1 &1615112480
 GameObject:
   m_ObjectHideFlags: 0
@@ -17296,3 +17349,4 @@ SceneRoots:
   - {fileID: 785054607}
   - {fileID: 2133819324}
   - {fileID: 915013679}
+  - {fileID: 1249544840}

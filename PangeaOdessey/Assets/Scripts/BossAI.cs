@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class BossAI : MonoBehaviour
 {
     [Header("Range")]
     [SerializeField]
     float _detectRange = 10f;
     [SerializeField]
-    float _meleeAttackRange = 5f;
+    float _meleeAttackRange = 3f;
+    
 
     [Header("Movement")]
     [SerializeField]
@@ -20,16 +22,45 @@ public class BossAI : MonoBehaviour
     Transform _detectedPlayer = null;
     Animator _animator = null;
 
+    public float followDistance = 10f; // 플레이어를 추적할 최대 거리
+    public float attackDistance = 3f; // 공격을 시작할 거리
+    public float runSpeed = 2f;
+    public float attackCooldown = 1f; // 공격 간격
+    public LayerMask playerLayer; // 플레이어 레이어 마스크
+    public float detectionRadius = 5f; // 탐지 반경
+    public float health = 100f; // 보스의 체력
+    public float attackDamage = 10f; // 공격 시 데미지
+    public float collisionDamage = 5f; // 충돌 시 데미지
+
+    [Header("# Projectile Info")]
+    public GameObject projectilePrefab; // 발사체 프리팹
+    public float projectileSpawnInterval = 2f; // 발사체 생성 간격
+    public float projectileSpawnDistance = 10f; // 발사체 생성 거리
+    public float projectileDamage = 5f; // 발사체 데미지
+
+    private Animator animator;
+    private float lastAttackTime;
+    private float lastProjectileSpawnTime;
+    private bool facingRight = true;
+    private bool isLive = true;
+    private Rigidbody2D rigid;
+    private Rigidbody2D player;
+    private Vector2 lastPlayerPosition;
+    private Collider2D attackRange; // 공격 범위를 나타내는 Collider
+
     const string _ATTACK_ANIM_STATE_NAME = "Attack";
-    const string _ATTACK_ANIM_TIRGGER_NAME = "attack";
+    const string _ATTACK_ANIM_TIRGGER_NAME = "Attack";
+    const string _RUN_ANIM_STATE_NAME = "Runing";
+    const string _RUN_ANIM_TIRGGER_NAME = "Running";
 
     void Awake()
     {
         _animator = GetComponent<Animator>();
-
+        rigid = GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
+        attackRange = GetComponentInChildren<BoxCollider2D>();
         _BTRunner = new BehaviorTreeRunner(SettingBT());
 
-        _originPos = transform.position;
     }
 
     
@@ -65,8 +96,8 @@ public class BossAI : MonoBehaviour
                     (
                         new List<INode>()
                         {
-                            new ActionNode(CheckDetectEnemy),
-                            new ActionNode(MoveToDetectEnemy),
+                            new ActionNode(FlipToPlayer),
+                            new ActionNode(MoveToEnemy),
                         }
                     ),
                     
@@ -93,19 +124,20 @@ public class BossAI : MonoBehaviour
     #region Melee Attack Node
     INode.ENodeState CheckMeleeAttacking()
     {
-        if (IsAnimationRunning(_ATTACK_ANIM_STATE_NAME))
+        /*if (IsAnimationRunning(_ATTACK_ANIM_STATE_NAME))
         {
             return INode.ENodeState.ENS_Running;
-        }
+        }*/
 
         return INode.ENodeState.ENS_Success;
     }
 
     INode.ENodeState CheckEnemyWithinMeleeAttackRange()
     {
-        if (_detectedPlayer != null)
+        if (player != null)
         {
-            if (Vector2.SqrMagnitude(_detectedPlayer.position - transform.position) < (_meleeAttackRange * _meleeAttackRange))
+            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+            if (distanceToPlayer < attackDistance && Time.time > lastAttackTime + attackCooldown)
             {
                 return INode.ENodeState.ENS_Success;
             }
@@ -116,9 +148,10 @@ public class BossAI : MonoBehaviour
 
      INode.ENodeState DoMeleeAttack()
     {
-        if (_detectedPlayer != null)
+        if (player != null)
         {
             _animator.SetTrigger(_ATTACK_ANIM_TIRGGER_NAME);
+            lastAttackTime = Time.time;
             return INode.ENodeState.ENS_Success;
         }
 
@@ -126,7 +159,7 @@ public class BossAI : MonoBehaviour
     }
     #endregion
 
-    #region Melee Attack Node
+    #region Ranged Attack Node
     INode.ENodeState CheckRangedAttacking()
     {
         if (IsAnimationRunning(_ATTACK_ANIM_STATE_NAME))
@@ -162,33 +195,38 @@ public class BossAI : MonoBehaviour
     }
     #endregion
 
-    #region Detect & Move Node
-    INode.ENodeState CheckDetectEnemy()
+    #region Filp & Move Node
+    INode.ENodeState FlipToPlayer()
     {
-        var overlapColliders = Physics.OverlapSphere(transform.position, _detectRange, LayerMask.GetMask("Player"));
-
-        if(overlapColliders != null && overlapColliders.Length > 0)
+        if(player != null)
         {
-            _detectedPlayer = overlapColliders[0].transform;
-
+            if (player.position.x > transform.position.x && !facingRight)
+            {
+                Flip();
+            }
+            else if (player.position.x < transform.position.x && facingRight)
+            {
+                Flip();
+            }
             return INode.ENodeState.ENS_Success;
         }
-
-        _detectedPlayer = null;
 
         return INode.ENodeState.ENS_Failure;
     }
 
-    INode.ENodeState MoveToDetectEnemy()
+    INode.ENodeState MoveToEnemy()
     {
-        if (_detectedPlayer != null)
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        if ( distanceToPlayer < followDistance)
         {
-            if (Vector3.SqrMagnitude(_detectedPlayer.position - transform.position) < (_meleeAttackRange * _meleeAttackRange))
-            {
-                return INode.ENodeState.ENS_Success;
-            }
+            Vector2 dirVec = player.position - rigid.position;
+            Vector2 nextVec = dirVec.normalized * runSpeed * Time.fixedDeltaTime;
+            rigid.MovePosition(rigid.position + nextVec);
+            rigid.velocity = Vector2.zero;
+            animator.SetTrigger(_RUN_ANIM_TIRGGER_NAME);
 
-            transform.position = Vector2.MoveTowards(transform.position, _detectedPlayer.position, Time.deltaTime * _movementSpeed);
+            // 플레이어의 마지막 위치 갱신
+            lastPlayerPosition = player.position;
 
             return INode.ENodeState.ENS_Running;
         }
@@ -197,4 +235,11 @@ public class BossAI : MonoBehaviour
     }
     #endregion
 
+    void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
+    }
 }
