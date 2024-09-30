@@ -126,7 +126,6 @@ GameObject:
   m_Component:
   - component: {fileID: 866829735663616565}
   - component: {fileID: 109241052731210002}
-  - component: {fileID: 67321808799445001}
   - component: {fileID: 866829735663616567}
   - component: {fileID: 3810028474657964033}
   - component: {fileID: 6705744345545692099}
@@ -170,25 +169,6 @@ MonoBehaviour:
   Animator: {fileID: 866829735663616567}
   Controller: {fileID: 0}
   Body: {fileID: 866829734583457880}
---- !u!114 &67321808799445001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 866829735663616562}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fb0ae57832b4561acaf07d9fa785297, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Monster: {fileID: 109241052731210002}
-  Controller: {fileID: 0}
-  RunSpeed: 5
-  JumpSpeed: 20
-  Gravity: 0
-  MoveDust: {fileID: 7173733659899399042}
-  JumpDust: {fileID: 4279288785571150961}
 --- !u!95 &866829735663616567
 Animator:
   serializedVersion: 5
@@ -240,6 +220,7 @@ MonoBehaviour:
   projectileSpawnInterval: 2
   projectileSpawnDistance: 10
   projectileDamage: 5
+  Monster: {fileID: 0}
 --- !u!50 &6705744345545692099
 Rigidbody2D:
   serializedVersion: 4
