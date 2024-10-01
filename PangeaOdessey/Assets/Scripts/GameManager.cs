@@ -35,7 +35,8 @@ public class GameManager : MonoBehaviour
     public float maxBossHealth;
 
     [Header("# Boss Damage")]
-    public float bossDamageAmount = 10f;
+    public float bossDamageAmount = 20f;
+    
 
     [Header("# Panel")]
     public GameObject clear;

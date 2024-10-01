@@ -48,7 +48,9 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
         private Rigidbody2D player;
         private Vector2 lastPlayerPosition;
         private Collider2D attackRange; // 공격 범위를 나타내는 Collider
+       
         Vector3 scale;
+
 
         public Monster Monster;
         private bool isFlipping = false;
@@ -158,9 +160,9 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
         {
             if (player != null)
             {
-                _animator.SetTrigger("Attack");
-                lastAttackTime = Time.time;
-                return INode.ENodeState.ENS_Success;
+                    _animator.SetTrigger("Attack");
+                    lastAttackTime = Time.time;
+                    return INode.ENodeState.ENS_Success;
             }
 
             return INode.ENodeState.ENS_Failure;
@@ -219,7 +221,7 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
                 var scale = transform.localScale;
                 scale.x *= -1;   
                 transform.localScale = scale;
-                Debug.Log(facingRight ? "오른쪽 회전" : "왼쪽 회전");
+                //Debug.Log(facingRight ? "오른쪽 회전" : "왼쪽 회전");
                 isFlipping = false;
                 return INode.ENodeState.ENS_Running;
             }
@@ -278,10 +280,10 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
 
         void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.CompareTag("Player"))
-            {
-                // 플레이어와 충돌했을 때 처리 (플레이어에게 데미지를 주거나 특정 동작 수행 등)
+            if (collision.CompareTag("Player") && IsAnimationRunning("Attack"))
+            {                
                 GameManager.instance.TakeDamage(GameManager.instance.bossDamageAmount);
+                Debug.Log("근접 공격 판정");
             }
             else if (collision.CompareTag("Bullet"))
             {
@@ -300,6 +302,7 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
             if (collision.gameObject.CompareTag("Player"))
             {
                 GameManager.instance.TakeDamage(collisionDamage);
+                Debug.Log("몸박");
             }
         }
 
