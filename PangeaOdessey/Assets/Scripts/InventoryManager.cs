@@ -15,16 +15,39 @@ public class InventoryManager : MonoBehaviour
     private int baseSpeed = 0;   // 기본 속도
 
     // 장비 착용 상태: 각 장비 슬롯의 착용 여부를 나타내는 불리언 변수들
-    private bool isHeadEquipped = false;   // 머리 장비 착용 여부
-    private bool isBodyEquipped = false;   // 몸통 장비 착용 여부
-    private bool isGlovesEquipped = false; // 장갑 착용 여부
-    private bool isShoesEquipped = false;  // 신발 착용 여부
+    private bool BronzeisHeadEquipped = false;   // 브론즈머리 장비 착용 여부
+    private bool SilverisHeadEquipped = false;   // 실버머리 장비 착용 여부
+    private bool GoldisHeadEquipped = false;   // 골드머리 장비 착용 여부
+
+    private bool BronzeisBodyEquipped = false;   // 브론즈몸통 장비 착용 여부
+    private bool SilverisBodyEquipped = false;   // 실버몸통 장비 착용 여부
+    private bool GoldisBodyEquipped = false;   // 골드몸통 장비 착용 여부
+
+    private bool BronzeisGlovesEquipped = false; // 브론즈장갑 착용 여부
+    private bool SilverisGlovesEquipped = false; // 실버장갑 착용 여부
+    private bool GoldisGlovesEquipped = false; // 골드장갑 착용 여부
+
+    private bool BronzeisShoesEquipped = false;  // 브론즈신발 착용 여부
+    private bool SilverisShoesEquipped = false;  // 실버신발 착용 여부
+    private bool GoldisShoesEquipped = false;  // 골드신발 착용 여부
+
 
     // 각 장비 아이템의 스탯 증가 값: 장비 착용 시 증가하는 스탯 값 (상수)
-    private const int HeadStatValue = 3;   // 머리 장비 스탯 증가 값
-    private const int BodyStatValue = 3;   // 몸통 장비 스탯 증가 값
-    private const int GlovesStatValue = 3; // 장갑 스탯 증가 값
-    private const int ShoesStatValue = 3;  // 신발 스탯 증가 값
+    private const int BronzeHeadStatValue = 1;   // 브론즈머리 장비 스탯 증가 값
+    private const int SilverHeadStatValue = 2;   // 실버머리 장비 스탯 증가 값
+    private const int GoldHeadStatValue = 3;   // 골드머리 장비 스탯 증가 값
+
+    private const int BronzeBodyStatValue = 1;   // 브론즈몸통 장비 스탯 증가 값
+     private const int SilverBodyStatValue = 2;   // 실버몸통 장비 스탯 증가 값
+      private const int GoldBodyStatValue = 3;   // 골드몸통 장비 스탯 증가 값
+
+    private const int BronzeGlovesStatValue = 1; // 브론즈장갑 스탯 증가 값
+     private const int SilverGlovesStatValue = 2; // 실버장갑 스탯 증가 값
+      private const int GoldGlovesStatValue = 3; // 골드장갑 스탯 증가 값
+
+    private const int BronzeShoesStatValue = 1;  // 브론즈신발 스탯 증가 값
+    private const int SilverShoesStatValue = 2;  // 실버신발 스탯 증가 값
+    private const int GoldShoesStatValue = 3;  // 골드신발 스탯 증가 값
 
     private void Awake()
     {
@@ -50,32 +73,88 @@ public class InventoryManager : MonoBehaviour
     {
         switch (itemName)
         {
-            case "Head": 
-                if (!isHeadEquipped)             // 머리 장비가 장착되어 있지 않은 경우에만 장착
+            case "BronzeHead": 
+                if (!BronzeisHeadEquipped)             // 머리 장비가 장착되어 있지 않은 경우에만 장착
                 { 
-                    isHeadEquipped = true;       // 머리 장비 장착 상태로 변경
-                    baseHealth += HeadStatValue; // 체력 증가
+                    BronzeisHeadEquipped = true;       // 머리 장비 장착 상태로 변경
+                    baseHealth += BronzeHeadStatValue; // 체력 증가
                 }
                 break;
-            case "Body":
-                if (!isBodyEquipped)             // 몸통 장비가 장착되어 있지 않은 경우에만 장착
+            case "SilverHead":
+                if (!SilverisHeadEquipped)             // 머리 장비가 장착되어 있지 않은 경우에만 장착
                 { 
-                    isBodyEquipped = true;       // 몸통 장비 장착 상태로 변경
-                    baseHealth += BodyStatValue; // 체력 증가
+                    SilverisHeadEquipped = true;       // 머리 장비 장착 상태로 변경
+                    baseHealth += SilverHeadStatValue; // 체력 증가
                 }
                 break;
-            case "Gloves":
-                if (!isGlovesEquipped)             // 장갑이 장착되어 있지 않은 경우에만 장착
+            case "GoldHead":
+                if (!GoldisHeadEquipped)             // 머리 장비가 장착되어 있지 않은 경우에만 장착
                 { 
-                    isGlovesEquipped = true;       // 장갑 장착 상태로 변경
-                    baseAttack += GlovesStatValue; // 공격력 증가
+                    GoldisHeadEquipped = true;       // 머리 장비 장착 상태로 변경
+                    baseHealth += GoldHeadStatValue; // 체력 증가
+                }
+                break;    
+            case "BronzeBody":
+                if (!BronzeisBodyEquipped)             // 몸통 장비가 장착되어 있지 않은 경우에만 장착
+                { 
+                    BronzeisBodyEquipped = true;       // 몸통 장비 장착 상태로 변경
+                    baseHealth += BronzeBodyStatValue; // 체력 증가
                 }
                 break;
-            case "Shoes":
-                if (!isShoesEquipped)              // 신발이 장착되어 있지 않은 경우에만 장착
+            case "SilverBody":
+                if (!SilverisBodyEquipped)             // 몸통 장비가 장착되어 있지 않은 경우에만 장착
                 { 
-                    isShoesEquipped = true;        // 신발 장착 상태로 변경
-                    baseSpeed += ShoesStatValue;   // 속도 증가
+                    SilverisBodyEquipped = true;       // 몸통 장비 장착 상태로 변경
+                    baseHealth += SilverBodyStatValue; // 체력 증가
+                }
+                break;
+            case "GoldBody":
+                if (!GoldisBodyEquipped)             // 몸통 장비가 장착되어 있지 않은 경우에만 장착
+                { 
+                    GoldisBodyEquipped = true;       // 몸통 장비 장착 상태로 변경
+                    baseHealth += GoldBodyStatValue; // 체력 증가
+                }
+                break;        
+            case "BronzeGloves":
+                if (!BronzeisGlovesEquipped)             // 장갑이 장착되어 있지 않은 경우에만 장착
+                { 
+                    BronzeisGlovesEquipped = true;       // 장갑 장착 상태로 변경
+                    baseAttack += BronzeGlovesStatValue; // 공격력 증가
+                }
+                break;
+            case "SilverGloves":
+                if (!SilverisGlovesEquipped)             // 장갑이 장착되어 있지 않은 경우에만 장착
+                { 
+                    SilverisGlovesEquipped = true;       // 장갑 장착 상태로 변경
+                    baseAttack += SilverGlovesStatValue; // 공격력 증가
+                }
+                break;
+            case "GoldGloves":
+                if (!GoldisGlovesEquipped)             // 장갑이 장착되어 있지 않은 경우에만 장착
+                { 
+                    GoldisGlovesEquipped = true;       // 장갑 장착 상태로 변경
+                    baseAttack += GoldGlovesStatValue; // 공격력 증가
+                }
+                break;
+            case "BronzeShoes":
+                if (!BronzeisShoesEquipped)              // 신발이 장착되어 있지 않은 경우에만 장착
+                { 
+                    BronzeisShoesEquipped = true;        // 신발 장착 상태로 변경
+                    baseSpeed += BronzeShoesStatValue;   // 속도 증가
+                }
+                break;
+            case "SilverShoes":
+                if (!SilverisShoesEquipped)              // 신발이 장착되어 있지 않은 경우에만 장착
+                { 
+                    SilverisShoesEquipped = true;        // 신발 장착 상태로 변경
+                    baseSpeed += SilverShoesStatValue;   // 속도 증가
+                }
+                break;
+            case "GoldShoes":
+                if (!GoldisShoesEquipped)              // 신발이 장착되어 있지 않은 경우에만 장착
+                { 
+                    GoldisShoesEquipped = true;        // 신발 장착 상태로 변경
+                    baseSpeed += GoldShoesStatValue;   // 속도 증가
                 }
                 break;
         }
@@ -88,32 +167,88 @@ public class InventoryManager : MonoBehaviour
     {
         switch (itemName)
         {
-            case "Head":
-                if (isHeadEquipped)              // 머리 장비가 장착되어 있는 경우에만 해제
+            case "BronzeHead":
+                if (BronzeisHeadEquipped)              // 머리 장비가 장착되어 있는 경우에만 해제
                 { 
-                    isHeadEquipped = false;      // 머리 장비 장착 상태 해제
-                    baseHealth -= HeadStatValue; // 증가했던 체력 감소
+                    BronzeisHeadEquipped = false;      // 머리 장비 장착 상태 해제
+                    baseHealth -= BronzeHeadStatValue; // 증가했던 체력 감소
                 }
                 break;
-            case "Body":
-                if (isBodyEquipped)              // 몸통 장비가 장착되어 있는 경우에만 해제
+            case "SilverHead":
+                if (SilverisHeadEquipped)              // 머리 장비가 장착되어 있는 경우에만 해제
                 { 
-                    isBodyEquipped = false;      // 몸통 장비 장착 상태 해제
-                    baseHealth -= BodyStatValue; // 증가했던 체력 감소
+                    SilverisHeadEquipped = false;      // 머리 장비 장착 상태 해제
+                    baseHealth -= SilverHeadStatValue; // 증가했던 체력 감소
                 }
                 break;
-            case "Gloves":
-                if (isGlovesEquipped)              // 장갑이 장착되어 있는 경우에만 해제
+            case "GoldHead":
+                if (GoldisHeadEquipped)              // 머리 장비가 장착되어 있는 경우에만 해제
                 { 
-                    isGlovesEquipped = false;      // 장갑 장착 상태 해제
-                    baseAttack -= GlovesStatValue; // 증가했던 공격력 감소
+                    GoldisHeadEquipped = false;      // 머리 장비 장착 상태 해제
+                    baseHealth -= GoldHeadStatValue; // 증가했던 체력 감소
                 }
                 break;
-            case "Shoes":
-                if (isShoesEquipped)               // 신발이 장착되어 있는 경우에만 해제
+            case "BronzeBody":
+                if (BronzeisBodyEquipped)              // 몸통 장비가 장착되어 있는 경우에만 해제
                 { 
-                    isShoesEquipped = false;       // 신발 장착 상태 해제
-                    baseSpeed -= ShoesStatValue;   // 증가했던 속도 감소
+                    BronzeisBodyEquipped = false;      // 몸통 장비 장착 상태 해제
+                    baseHealth -= BronzeBodyStatValue; // 증가했던 체력 감소
+                }
+                break;
+            case "SilverBody":
+                if (SilverisBodyEquipped)              // 몸통 장비가 장착되어 있는 경우에만 해제
+                { 
+                    SilverisBodyEquipped = false;      // 몸통 장비 장착 상태 해제
+                    baseHealth -= SilverBodyStatValue; // 증가했던 체력 감소
+                }
+                break;
+            case "GoldBody":
+                if (GoldisBodyEquipped)              // 몸통 장비가 장착되어 있는 경우에만 해제
+                { 
+                    GoldisBodyEquipped = false;      // 몸통 장비 장착 상태 해제
+                    baseHealth -= GoldBodyStatValue; // 증가했던 체력 감소
+                }
+                break;
+            case "BronzeGloves":
+                if (BronzeisGlovesEquipped)              // 장갑이 장착되어 있는 경우에만 해제
+                { 
+                    BronzeisGlovesEquipped = false;      // 장갑 장착 상태 해제
+                    baseAttack -= BronzeGlovesStatValue; // 증가했던 공격력 감소
+                }
+                break;
+            case "SilverGloves":
+                if (SilverisGlovesEquipped)              // 장갑이 장착되어 있는 경우에만 해제
+                { 
+                    SilverisGlovesEquipped = false;      // 장갑 장착 상태 해제
+                    baseAttack -= SilverGlovesStatValue; // 증가했던 공격력 감소
+                }
+                break;
+            case "GoldGloves":
+                if (GoldisGlovesEquipped)              // 장갑이 장착되어 있는 경우에만 해제
+                { 
+                    GoldisGlovesEquipped = false;      // 장갑 장착 상태 해제
+                    baseAttack -= GoldGlovesStatValue; // 증가했던 공격력 감소
+                }
+                break;
+            case "BronzeShoes":
+                if (BronzeisShoesEquipped)               // 신발이 장착되어 있는 경우에만 해제
+                { 
+                    BronzeisShoesEquipped = false;       // 신발 장착 상태 해제
+                    baseSpeed -= BronzeShoesStatValue;   // 증가했던 속도 감소
+                }
+                break;
+            case "SilverShoes":
+                if (SilverisShoesEquipped)               // 신발이 장착되어 있는 경우에만 해제
+                { 
+                    SilverisShoesEquipped = false;       // 신발 장착 상태 해제
+                    baseSpeed -= SilverShoesStatValue;   // 증가했던 속도 감소
+                }
+                break;
+            case "GoldShoes":
+                if (GoldisShoesEquipped)               // 신발이 장착되어 있는 경우에만 해제
+                { 
+                    GoldisShoesEquipped = false;       // 신발 장착 상태 해제
+                    baseSpeed -= GoldShoesStatValue;   // 증가했던 속도 감소
                 }
                 break;
         }
