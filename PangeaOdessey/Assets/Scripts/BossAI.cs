@@ -23,11 +23,12 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
         Transform _detectedPlayer = null;
         Animator _animator = null;
 
-        public float followDistance = 10f; // 플레이어를 추적할 최대 거리
+        public float followDistance = 15f; // 플레이어를 추적할 최대 거리
         public float attackDistance = 3f; // 공격을 시작할 거리
         public float rangeAttackDistance = 6f;
         public float runSpeed = 1f;
         public float attackCooldown = 3f; // 공격 간격
+        public float fireCooldown = 1f; // 공격 간격
         public LayerMask playerLayer; // 플레이어 레이어 마스크
         public float detectionRadius = 5f; // 탐지 반경
         public float health = 100f; // 보스의 체력
@@ -42,6 +43,7 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
 
         private Animator animator;
         private float lastAttackTime;
+        private float lastFireTime;
         private float lastProjectileSpawnTime;
         private bool facingRight = true;
         private bool isLive = true;
@@ -99,15 +101,15 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
                                 new ActionNode(DoMeleeAttack),
                             }
                         ),
-                        /*new SequenceNode
+                        new SequenceNode
                         (
                             new List<INode>()
                             {
-                                //new ActionNode(CheckRangedAttacking),
-                                //new ActionNode(CheckEnemyWithinRangedAttackRange),
-                               // new ActionNode(DoRangedAttack),
+                                new ActionNode(CheckRangedAttacking),
+                                new ActionNode(CheckEnemyWithinRangedAttackRange),
+                               new ActionNode(DoRangedAttack),
                             }
-                        ),*/
+                        ),
                         new SequenceNode
                         (
                             new List<INode>()
@@ -170,7 +172,7 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
             if (player != null)
             {
                     _animator.SetTrigger(_ATTACK_ANIM_TIRGGER_NAME);
-                    Debug.Log("트리거 주기");
+                    
                     lastAttackTime = Time.time;
                     return INode.ENodeState.ENS_Success;
             }
@@ -182,7 +184,7 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
         #region Ranged Attack Node
         INode.ENodeState CheckRangedAttacking()
         {
-            if (IsAnimationRunning(_FIRE_ANIM_STATE_NAME))
+            if (IsAnimationRunning("Dragon_Fire"))
             {
                 return INode.ENodeState.ENS_Running;
             }
@@ -193,10 +195,10 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
         INode.ENodeState CheckEnemyWithinRangedAttackRange()
         {
             float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-            if (distanceToPlayer > 10 && fireCheck >= 3 )
+            if (distanceToPlayer > attackDistance &&  distanceToPlayer < 15f && Time.time > lastFireTime + fireCooldown )
             {
                 return INode.ENodeState.ENS_Success;
-            }         
+            }
               
             return INode.ENodeState.ENS_Failure;
         }
@@ -205,8 +207,10 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
         {
             if (player != null)
             {
-                _animator.SetTrigger(_FIRE_ANIM_TIRGGER_NAME);
-                fireCheck = 0f;
+                _animator.SetTrigger("isFiring");
+                SpawnProjectile();
+                lastFireTime = Time.time;
+                
                 return INode.ENodeState.ENS_Success;
             }
 
@@ -267,6 +271,17 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
         public void ApplyAttackDamage()
         {
             
+        }
+
+        void SpawnProjectile()
+        {
+            Vector2 spawnPosition = transform.position;
+            GameObject projectile = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
+            Projectile projectileScript = projectile.GetComponent<Projectile>();
+            if (projectileScript != null)
+            {
+                projectileScript.Initialize(lastPlayerPosition, projectileDamage);
+            }
         }
         public void TakeDamage(float amount)
         {

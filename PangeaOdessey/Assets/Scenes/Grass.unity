@@ -1763,6 +1763,10 @@ PrefabInstance:
       propertyPath: prefabId
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2500579523214033743, guid: 10c5e1a945857cc49bdeb88d7aa9f791, type: 3}
+      propertyPath: orthographic size
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2875948711719243713, guid: 10c5e1a945857cc49bdeb88d7aa9f791, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -15138,6 +15142,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7697642012732122005, guid: d821f4b3330302f48aa065bfd75386e3, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 1547789051345944078, guid: 0071ad87ee8a9b444947fd3cceb85afe, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
