@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7863782979998736813}
   - component: {fileID: 747769333337490867}
-  - component: {fileID: 5505196255946992123}
   - component: {fileID: -8222820987935694874}
   - component: {fileID: 8407212429012901163}
   - component: {fileID: 7276174056789731431}
+  - component: {fileID: -2849314577264798805}
   m_Layer: 0
   m_Name: BlueDragon_fireball
   m_TagString: Fireball
@@ -88,27 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &5505196255946992123
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1547789051345944078}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fd39d46396c082845ab1582351db02f0, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &-8222820987935694874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,8 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35f844e0ea79c4e48ac06a3e5f3a4df5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 10
   damage: 10
+  lifeTime: 5
 --- !u!50 &8407212429012901163
 Rigidbody2D:
   serializedVersion: 4
@@ -179,9 +159,30 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.48269853, y: 0.69835484}
   m_Size: {x: 1.7354057, y: 0.97583973}
   m_Direction: 1
+--- !u!95 &-2849314577264798805
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547789051345944078}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8331c5a4069724740972698960db0b7f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

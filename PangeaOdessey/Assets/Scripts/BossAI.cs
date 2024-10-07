@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
     [RequireComponent(typeof(Animator))]
     public class BossAI : MonoBehaviour
@@ -24,10 +25,10 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
         Animator _animator = null;
 
         public float followDistance = 15f; // 플레이어를 추적할 최대 거리
-        public float attackDistance = 3f; // 공격을 시작할 거리
+        public float attackDistance = 4f; // 공격을 시작할 거리
         public float rangeAttackDistance = 6f;
         public float runSpeed = 1f;
-        public float attackCooldown = 3f; // 공격 간격
+        public float attackCooldown = 2f; // 공격 간격
         public float fireCooldown = 1f; // 공격 간격
         public LayerMask playerLayer; // 플레이어 레이어 마스크
         public float detectionRadius = 5f; // 탐지 반경
@@ -44,8 +45,6 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
         private Animator animator;
         private float lastAttackTime;
         private float lastFireTime;
-        private float lastProjectileSpawnTime;
-        private bool facingRight = true;
         private bool isLive = true;
         private Rigidbody2D rigid;
         private Rigidbody2D player;
@@ -208,7 +207,7 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
             if (player != null)
             {
                 _animator.SetTrigger("isFiring");
-                SpawnProjectile();
+                //SpawnProjectile();
                 lastFireTime = Time.time;
                 
                 return INode.ENodeState.ENS_Success;
@@ -275,13 +274,21 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
 
         void SpawnProjectile()
         {
-            Vector2 spawnPosition = transform.position;
-            GameObject projectile = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
-            Projectile projectileScript = projectile.GetComponent<Projectile>();
-            if (projectileScript != null)
+            float[] angles = { -20f, 0f, 20f };
+            foreach (float angle in angles)
             {
-                projectileScript.Initialize(lastPlayerPosition, projectileDamage);
+                Vector2 spawnPosition = transform.position;
+                GameObject projectile = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
+                Projectile projectileScript = projectile.GetComponent<Projectile>();
+                if (projectileScript != null)
+                {
+                    lastPlayerPosition = Quaternion.Euler(0, 0, angle) * lastPlayerPosition;
+                    Debug.Log(angle);
+                    lastPlayerPosition.Normalize();
+                    projectileScript.Initialize(lastPlayerPosition, projectileDamage);
+                }
             }
+
         }
         public void TakeDamage(float amount)
         {
