@@ -274,22 +274,32 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
 
         void SpawnProjectile()
         {
-            float[] angles = { -20f, 0f, 20f };
+            float[] angles = { 0f, 10f, -10f };
+            Vector2 playerDirection = ((Vector2)player.position - (Vector2)transform.position).normalized; // 방향 벡터 계산 및 정규화
+
             foreach (float angle in angles)
             {
                 Vector2 spawnPosition = transform.position;
+                if (transform.localScale.x < 0)
+                {
+                    spawnPosition.x -= 3;
+                }
+                else
+                {
+                    spawnPosition.x += 3;
+                }
+                
                 GameObject projectile = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
                 Projectile projectileScript = projectile.GetComponent<Projectile>();
                 if (projectileScript != null)
                 {
-                    lastPlayerPosition = Quaternion.Euler(0, 0, angle) * lastPlayerPosition;
-                    Debug.Log(angle);
-                    lastPlayerPosition.Normalize();
-                    projectileScript.Initialize(lastPlayerPosition, projectileDamage);
+                    // 각도 변환 후의 방향 벡터 계산
+                    Vector2 direction = Quaternion.Euler(0, 0, angle) * playerDirection;
+                    projectileScript.Initialize(direction, projectileDamage);
                 }
             }
-
         }
+
         public void TakeDamage(float amount)
         {
             if (!isLive) return;

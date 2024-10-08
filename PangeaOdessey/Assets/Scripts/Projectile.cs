@@ -8,33 +8,23 @@ public class Projectile : MonoBehaviour
 
     private Vector3 moveDirection;
     private float spawnTime;
+    private Vector3 playerDirection;
 
     public void Initialize(Vector3 target, float damageAmount)
     {
-        // 발사체의 시작 위치 고정
-        if (target.x >= transform.position.x)
-        {
-            transform.position += new Vector3(3, 0.5f, 0); // 오른쪽으로 3만큼 이동
-        }
-        else
-        {
-            transform.position += new Vector3(-3, 0.5f, 0); // 왼쪽으로 3만큼 이동
-        }
 
         // 오프셋된 시작 위치에서 목표까지의 방향 계산 및 정규화
-        Vector3 direction = target;
+        moveDirection = new Vector2(target.x, target.y);
         
 
         // 발사체의 회전 설정
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-       
+       float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
         damage = damageAmount;
         spawnTime = Time.time;
+        playerDirection = target;
 
-        // 이동 방향 설정
-        moveDirection = direction;
     }
 
     private void Update()
