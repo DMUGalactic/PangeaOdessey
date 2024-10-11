@@ -1,146 +1,154 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
+using System.Linq; 
 
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance { get; private set; }
- 
-    // UI 텍스트 요소들
-    public TextMeshProUGUI healthText;  // 체력 표시 텍스트
-    public TextMeshProUGUI attackText;  // 공격력 표시 텍스트
-    public TextMeshProUGUI speedText;   // 속도 표시 텍스트
 
-    private int baseHealth = 0;  // 기본 체력
-    private int baseAttack = 0; // 기본 공격력
-    private int baseSpeed = 0;  // 기본 속도
+    public TextMeshProUGUI healthText;
+    public TextMeshProUGUI attackText;
+    public TextMeshProUGUI speedText;
 
-    // 장비 타입
-    public enum EquipmentType
+    // 기본 스탯 값
+    private int baseHealth = 0;
+    private int baseAttack = 1;
+    private int baseSpeed = 1;
+
+    // 아이템 타입 열거형
+    private enum ItemType { Head, Body, Gloves, Shoes }
+
+    // 아이템 정보를 저장하는 구조체
+    private struct ItemInfo
     {
-        Head,
-        Body,
-        Gloves,
-        Shoes
+        public ItemType Type;
+        public float StatValue;
+        public bool IsEquipped;
     }
 
+    // 아이템 정보를 저장하는 딕셔너리
+    private Dictionary<string, ItemInfo> items = new Dictionary<string, ItemInfo>();
 
-    // 장비 등급
-    public enum EquipmentTier
-    {
-        Bronze,
-        Silver,
-        Gold
-    }
-
-     // 장비 정보를 담는 클래스
-    public class Equipment
-    {
-        public string Name;        // 장비 이름
-        public EquipmentType Type; // 장비 타입
-        public EquipmentTier Tier; // 장비 등급
-        public int StatBonus;      // 장비 착용 시 증가하는 스탯 값
-        public bool IsEquipped;    // 장비 착용 여부
-    }
-
-    // 모든 장비 아이템을 저장하는 딕셔너리
-    private Dictionary<string, Equipment> equipments = new Dictionary<string, Equipment>
-    {
-        {"BronzeHead", new Equipment {Name = "BronzeHead", Type = EquipmentType.Head, Tier = EquipmentTier.Bronze, StatBonus = 1, IsEquipped = false}},
-        {"SilverHead", new Equipment {Name = "SilverHead", Type = EquipmentType.Head, Tier = EquipmentTier.Silver, StatBonus = 2, IsEquipped = false}},
-        {"GoldHead", new Equipment {Name = "GoldHead", Type = EquipmentType.Head, Tier = EquipmentTier.Gold, StatBonus = 3, IsEquipped = false}},
-        {"BronzeBody", new Equipment {Name = "BronzeBody", Type = EquipmentType.Body, Tier = EquipmentTier.Bronze, StatBonus = 1, IsEquipped = false}},
-        {"SilverBody", new Equipment {Name = "SilverBody", Type = EquipmentType.Body, Tier = EquipmentTier.Silver, StatBonus = 2, IsEquipped = false}},
-        {"GoldBody", new Equipment {Name = "GoldBody", Type = EquipmentType.Body, Tier = EquipmentTier.Gold, StatBonus = 3, IsEquipped = false}},
-        {"BronzeGloves", new Equipment {Name = "BronzeGloves", Type = EquipmentType.Gloves, Tier = EquipmentTier.Bronze, StatBonus = 1, IsEquipped = false}},
-        {"SilverGloves", new Equipment {Name = "SilverGloves", Type = EquipmentType.Gloves, Tier = EquipmentTier.Silver, StatBonus = 2, IsEquipped = false}},
-        {"GoldGloves", new Equipment {Name = "GoldGloves", Type = EquipmentType.Gloves, Tier = EquipmentTier.Gold, StatBonus = 3, IsEquipped = false}},
-        {"BronzeShoes", new Equipment {Name = "BronzeShoes", Type = EquipmentType.Shoes, Tier = EquipmentTier.Bronze, StatBonus = 1, IsEquipped = false}},
-        {"SilverShoes", new Equipment {Name = "SilverShoes", Type = EquipmentType.Shoes, Tier = EquipmentTier.Silver, StatBonus = 2, IsEquipped = false}},
-        {"GoldShoes", new Equipment {Name = "GoldShoes", Type = EquipmentType.Shoes, Tier = EquipmentTier.Gold, StatBonus = 3, IsEquipped = false}}
-    }; // 각 장비 아이템 정의
-
-    // Awake: 스크립트가 로드될 때 호출되는 메서드
     private void Awake()
     {
+        // 싱글톤 패턴 구현
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);  // 씬 전환 시에도 오브젝트 유지 
+            DontDestroyOnLoad(gameObject);
+            InitializeItems();
         }
         else
         {
-            Destroy(gameObject); // 중복 인스턴스 제거
+            Destroy(gameObject);
         }
     }
 
     private void Start()
     {
-        UpdateStatsText(); // 초기 스탯 텍스트 업데이트
+        UpdateStatsText();
     }
 
-
-    // EquipItem: 아이템을 장착하는 메서드
-     public void EquipItem(string itemName)
+    // 아이템 초기화 메서드
+    private void InitializeItems()
     {
-        if (equipments.TryGetValue(itemName, out Equipment equipment))
-        {
-            equipment.IsEquipped = true; // 장비 해제 상태로 변경
-            UpdateStats(); // 스탯 업데이트
-        }
+        // 헤드 아이템 추가
+        AddItem("BronzeHead", ItemType.Head, 1);
+        AddItem("SilverHead", ItemType.Head, 2);
+        AddItem("GoldHead", ItemType.Head, 3);
+
+        // 바디 아이템 추가
+        AddItem("BronzeBody", ItemType.Body, 2);
+        AddItem("SilverBody", ItemType.Body, 4);
+        AddItem("GoldBody", ItemType.Body, 6);
+
+        // 글러브 아이템 추가
+        AddItem("BronzeGloves", ItemType.Gloves, 0.1f);
+        AddItem("SilverGloves", ItemType.Gloves, 0.2f);
+        AddItem("GoldGloves", ItemType.Gloves, 0.3f);
+
+        // 신발 아이템 추가
+        AddItem("BronzeShoes", ItemType.Shoes, 0.1f);
+        AddItem("SilverShoes", ItemType.Shoes, 0.2f);
+        AddItem("GoldShoes", ItemType.Shoes, 0.3f);
     }
 
-    // UnequipItem: 아이템을 해제하는 메서드
+    // 아이템 추가 메서드
+    private void AddItem(string itemName, ItemType type, float statValue)
+    {
+        items[itemName] = new ItemInfo { Type = type, StatValue = statValue, IsEquipped = false };
+    }
+
+    // 아이템 장착 메서드
+    public void EquipItem(string itemName)
+    {
+        if (!items.ContainsKey(itemName)) return;
+
+        var item = items[itemName];
+        if (item.IsEquipped) return;
+
+        item.IsEquipped = true;
+        items[itemName] = item;
+
+        switch (item.Type)
+        {
+            case ItemType.Head:
+            case ItemType.Body:
+                baseHealth += (int)item.StatValue;
+                break;
+            case ItemType.Gloves:
+                baseAttack = (int)(baseAttack * (1 + item.StatValue));
+                break;
+            case ItemType.Shoes:
+                baseSpeed = (int)(baseSpeed * (1 + item.StatValue));
+                break;
+        }
+
+        UpdateStatsText();
+    }
+
+    // 아이템 해제 메서드
     public void UnequipItem(string itemName)
     {
-        if (equipments.TryGetValue(itemName, out Equipment equipment))
-        {
-            equipment.IsEquipped = false; // 장비 해제 상태로 변경
-            UpdateStats(); // 스탯 업데이트
-        } 
-    }
+        if (!items.ContainsKey(itemName)) return;
 
-    // ToggleEquipment: 장비 착용/해제를 토글하는 메서드
-    public void ToggleEquipment(string itemName)
-    {
-        if (equipments.TryGetValue(itemName, out Equipment equipment))
+        var item = items[itemName];
+        if (!item.IsEquipped) return;
+
+        item.IsEquipped = false;
+        items[itemName] = item;
+
+        switch (item.Type)
         {
-            equipment.IsEquipped = !equipment.IsEquipped; // 착용 상태 반전
-            UpdateStats(); // 스탯 업데이트
+            case ItemType.Head:
+            case ItemType.Body:
+                baseHealth -= (int)item.StatValue;
+                break;
+            case ItemType.Gloves:
+                baseAttack = Mathf.Max(1, (int)(baseAttack / (1 + item.StatValue)));
+                break;
+            case ItemType.Shoes:
+                baseSpeed = Mathf.Max(1, (int)(baseSpeed / (1 + item.StatValue)));
+                break;
         }
+
+        UpdateStatsText();
     }
 
-    // UpdateStats: 모든 장비의 효과를 적용하여 스탯을 업데이트하는 메서드
-    private void UpdateStats()
-    {
-        baseHealth = baseAttack = baseSpeed = 0;           // 스탯 초기화
-        foreach (var equipment in equipments.Values)
-        {
-            if (equipment.IsEquipped)
-            {
-                switch (equipment.Type)
-                {
-                    case EquipmentType.Head: 
-                    case EquipmentType.Body:
-                        baseHealth += equipment.StatBonus; // 체력 증가
-                        break;
-                    case EquipmentType.Gloves:
-                        baseAttack += equipment.StatBonus; // 공격력 증가
-                        break;
-                    case EquipmentType.Shoes:
-                        baseSpeed += equipment.StatBonus; // 속도 증가
-                        break;
-                }
-            }
-        }
-        UpdateStatsText(); // UI 텍스트 업데이트
-    }
-
-    // UpdateStatsText: UI에 현재 스탯 값을 표시하는 메서드
+    // 스탯 텍스트 업데이트 메서드
     private void UpdateStatsText()
     {
         healthText.text = $"HP {baseHealth}";
-        attackText.text = $"Damage {baseAttack}";
-        speedText.text = $"Speed {baseSpeed}";
+        attackText.text = $"Damage {baseAttack} (+{CalculatePercentage(ItemType.Gloves)}%)";
+        speedText.text = $"Speed {baseSpeed} (+{CalculatePercentage(ItemType.Shoes)}%)";
+    }
+
+    // 특정 타입의 아이템에 대한 퍼센티지 계산 메서드
+    private int CalculatePercentage(ItemType type)
+    {
+        return (int)(items.Values
+            .Where(item => item.Type == type && item.IsEquipped)
+            .Sum(item => item.StatValue * 100));
     }
 }
