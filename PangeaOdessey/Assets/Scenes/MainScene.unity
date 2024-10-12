@@ -2034,7 +2034,7 @@ GameObject:
   - component: {fileID: 165974317}
   - component: {fileID: 165974316}
   m_Layer: 5
-  m_Name: Head (3)
+  m_Name: Shoes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2056,7 +2056,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 220.53015, y: -247.58014}
+  m_AnchoredPosition: {x: 187.09998, y: -247.58014}
   m_SizeDelta: {x: 142.79, y: 67.8395}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &165974316
@@ -2606,8 +2606,9 @@ GameObject:
   - component: {fileID: 292745894}
   - component: {fileID: 292745893}
   - component: {fileID: 292745892}
+  - component: {fileID: 292745895}
   m_Layer: 5
-  m_Name: Monk Image (2)
+  m_Name: GoldHelmet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2629,7 +2630,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 665, y: 206}
+  m_AnchoredPosition: {x: 665, y: 200}
   m_SizeDelta: {x: 107.0995, y: 116.4419}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &292745892
@@ -2726,6 +2727,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292745890}
   m_CullTransparentMesh: 1
+--- !u!114 &292745895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292745890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79c010bc6675d14a9308d2d1e9a45b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetImage: {fileID: 1793861577}
+  targetText: {fileID: 1181781331}
+  customText: 
 --- !u!1 &302849363
 GameObject:
   m_ObjectHideFlags: 0
@@ -3328,8 +3344,9 @@ GameObject:
   - component: {fileID: 346006814}
   - component: {fileID: 346006813}
   - component: {fileID: 346006812}
+  - component: {fileID: 346006815}
   m_Layer: 5
-  m_Name: Monk Image (1)
+  m_Name: SilverHelmet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3448,6 +3465,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 346006810}
   m_CullTransparentMesh: 1
+--- !u!114 &346006815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346006810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79c010bc6675d14a9308d2d1e9a45b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetImage: {fileID: 1793861577}
+  targetText: {fileID: 1181781331}
+  customText: 
 --- !u!1 &435089993
 GameObject:
   m_ObjectHideFlags: 0
@@ -3460,8 +3492,9 @@ GameObject:
   - component: {fileID: 435089997}
   - component: {fileID: 435089996}
   - component: {fileID: 435089995}
+  - component: {fileID: 435089998}
   m_Layer: 5
-  m_Name: Monk Image (6)
+  m_Name: BronzeGloves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3483,7 +3516,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 329, y: -94.99999}
+  m_AnchoredPosition: {x: 335, y: -94.99999}
   m_SizeDelta: {x: 107.0995, y: 116.4419}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &435089995
@@ -3580,6 +3613,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 435089993}
   m_CullTransparentMesh: 1
+--- !u!114 &435089998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435089993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79c010bc6675d14a9308d2d1e9a45b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetImage: {fileID: 1793861577}
+  targetText: {fileID: 1181781331}
+  customText: "\uBE0C\uB860\uC988 \uD5EC\uBA67 HP+1"
 --- !u!1 &437953175
 GameObject:
   m_ObjectHideFlags: 0
@@ -5875,8 +5923,9 @@ GameObject:
   - component: {fileID: 614966575}
   - component: {fileID: 614966574}
   - component: {fileID: 614966573}
+  - component: {fileID: 614966576}
   m_Layer: 5
-  m_Name: Monk Image (4)
+  m_Name: SilverArmor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5995,6 +6044,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614966571}
   m_CullTransparentMesh: 1
+--- !u!114 &614966576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614966571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79c010bc6675d14a9308d2d1e9a45b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetImage: {fileID: 1793861577}
+  targetText: {fileID: 1181781331}
+  customText: 
 --- !u!1 &616920177
 GameObject:
   m_ObjectHideFlags: 0
@@ -6231,8 +6295,9 @@ GameObject:
   - component: {fileID: 631996943}
   - component: {fileID: 631996942}
   - component: {fileID: 631996941}
+  - component: {fileID: 631996944}
   m_Layer: 5
-  m_Name: Monk Image (10)
+  m_Name: SilverShoes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6351,6 +6416,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 631996939}
   m_CullTransparentMesh: 1
+--- !u!114 &631996944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631996939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79c010bc6675d14a9308d2d1e9a45b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetImage: {fileID: 1793861577}
+  targetText: {fileID: 1181781331}
+  customText: 
 --- !u!1 &656336321
 GameObject:
   m_ObjectHideFlags: 0
@@ -6521,8 +6601,9 @@ GameObject:
   - component: {fileID: 689278295}
   - component: {fileID: 689278294}
   - component: {fileID: 689278293}
+  - component: {fileID: 689278296}
   m_Layer: 5
-  m_Name: Monk Image
+  m_Name: BronzeHelmet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6544,7 +6625,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 329, y: 200}
+  m_AnchoredPosition: {x: 335, y: 200}
   m_SizeDelta: {x: 107.0995, y: 116.4419}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &689278293
@@ -6591,9 +6672,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1819741239}
         m_TargetAssemblyTypeName: SelectPlayer, Assembly-CSharp
-        m_MethodName: ChangeText
+        m_MethodName: 
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6641,6 +6722,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 689278291}
   m_CullTransparentMesh: 1
+--- !u!114 &689278296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689278291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79c010bc6675d14a9308d2d1e9a45b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetImage: {fileID: 1793861577}
+  targetText: {fileID: 1181781331}
+  customText: "\uBE0C\uB860\uC988 \uD5EC\uBA67 HP+1"
 --- !u!1 &694292982
 GameObject:
   m_ObjectHideFlags: 0
@@ -7891,7 +7987,7 @@ GameObject:
   - component: {fileID: 836670230}
   - component: {fileID: 836670229}
   m_Layer: 5
-  m_Name: Image
+  m_Name: targetImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7906,14 +8002,14 @@ RectTransform:
   m_GameObject: {fileID: 836670227}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.32, y: 1.32, z: 1.32}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1622440783}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -321, y: 0.0000085831}
+  m_AnchoredPosition: {x: -321, y: 0.40603}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &836670229
@@ -7936,7 +8032,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 44a158a884a37774ca7b1a7afa1b83b9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8399,8 +8495,9 @@ GameObject:
   - component: {fileID: 921530599}
   - component: {fileID: 921530598}
   - component: {fileID: 921530597}
+  - component: {fileID: 921530600}
   m_Layer: 5
-  m_Name: Monk Image (11)
+  m_Name: GoldShoes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8422,7 +8519,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 664.9999, y: -245.63}
+  m_AnchoredPosition: {x: 665, y: -231.63}
   m_SizeDelta: {x: 107.0995, y: 116.4419}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &921530597
@@ -8519,6 +8616,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 921530595}
   m_CullTransparentMesh: 1
+--- !u!114 &921530600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921530595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79c010bc6675d14a9308d2d1e9a45b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetImage: {fileID: 1793861577}
+  targetText: {fileID: 1181781331}
+  customText: 
 --- !u!1 &934382940
 GameObject:
   m_ObjectHideFlags: 0
@@ -9147,8 +9259,9 @@ GameObject:
   - component: {fileID: 1010623852}
   - component: {fileID: 1010623851}
   - component: {fileID: 1010623850}
+  - component: {fileID: 1010623853}
   m_Layer: 5
-  m_Name: Monk Image (9)
+  m_Name: BronzeShoes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9170,7 +9283,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 329, y: -231.63}
+  m_AnchoredPosition: {x: 335, y: -231.63}
   m_SizeDelta: {x: 107.0995, y: 116.4419}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1010623850
@@ -9267,6 +9380,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010623848}
   m_CullTransparentMesh: 1
+--- !u!114 &1010623853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010623848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79c010bc6675d14a9308d2d1e9a45b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetImage: {fileID: 1793861577}
+  targetText: {fileID: 1181781331}
+  customText: "\uBE0C\uB860\uC988 \uD5EC\uBA67 HP+1"
 --- !u!1 &1016379866
 GameObject:
   m_ObjectHideFlags: 0
@@ -10888,7 +11016,7 @@ GameObject:
   - component: {fileID: 1181781332}
   - component: {fileID: 1181781331}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: EquimentInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10910,8 +11038,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -391, y: -172.41}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -299.1226, y: -185.54}
+  m_SizeDelta: {x: 429.5583, y: 56.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1181781331
 MonoBehaviour:
@@ -10934,19 +11062,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: 0c625bd5b90fbbe4b89e41d5fe40ae7d, type: 3}
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC99D\uAC00\uD558\uB294 \uC99D\uB825\uCE58"
+  m_Text: "\uC7A5\uBE44 \uB2A5\uB825\uCE58"
 --- !u!222 &1181781332
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13405,8 +13533,9 @@ GameObject:
   - component: {fileID: 1493150995}
   - component: {fileID: 1493150994}
   - component: {fileID: 1493150993}
+  - component: {fileID: 1493150996}
   m_Layer: 5
-  m_Name: Monk Image (3)
+  m_Name: BronzeArmor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13428,7 +13557,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 329, y: 56.311}
+  m_AnchoredPosition: {x: 335, y: 56.311}
   m_SizeDelta: {x: 107.0995, y: 116.4419}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1493150993
@@ -13525,6 +13654,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1493150991}
   m_CullTransparentMesh: 1
+--- !u!114 &1493150996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493150991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79c010bc6675d14a9308d2d1e9a45b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetImage: {fileID: 1793861577}
+  targetText: {fileID: 1181781331}
+  customText: "\uBE0C\uB860\uC988 \uD5EC\uBA67 HP+1"
 --- !u!1 &1494481494
 GameObject:
   m_ObjectHideFlags: 0
@@ -13965,8 +14109,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 220.53, y: 56.311}
-  m_SizeDelta: {x: 109.8354, y: 58.0888}
+  m_AnchoredPosition: {x: 191.14, y: 56.311}
+  m_SizeDelta: {x: 134.7099, y: 58.0888}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1522094902
 MonoBehaviour:
@@ -14697,7 +14841,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 220.43, y: 200}
+  m_AnchoredPosition: {x: 187, y: 200}
   m_SizeDelta: {x: 142.9879, y: 63.9392}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1598239271
@@ -14733,7 +14877,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Head
+  m_Text: 'Helmet
 
 '
 --- !u!222 &1598239272
@@ -14756,8 +14900,9 @@ GameObject:
   - component: {fileID: 1608094088}
   - component: {fileID: 1608094087}
   - component: {fileID: 1608094086}
+  - component: {fileID: 1608094089}
   m_Layer: 5
-  m_Name: Monk Image (5)
+  m_Name: GoldArmor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14779,7 +14924,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 665, y: 42.311}
+  m_AnchoredPosition: {x: 664.9999, y: 58.220974}
   m_SizeDelta: {x: 107.0995, y: 116.4419}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1608094086
@@ -14876,6 +15021,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1608094084}
   m_CullTransparentMesh: 1
+--- !u!114 &1608094089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608094084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79c010bc6675d14a9308d2d1e9a45b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetImage: {fileID: 1793861577}
+  targetText: {fileID: 1181781331}
+  customText: 
 --- !u!1 &1608804376
 GameObject:
   m_ObjectHideFlags: 0
@@ -14888,8 +15048,9 @@ GameObject:
   - component: {fileID: 1608804380}
   - component: {fileID: 1608804379}
   - component: {fileID: 1608804378}
+  - component: {fileID: 1608804381}
   m_Layer: 5
-  m_Name: Monk Image (7)
+  m_Name: SilverGloves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15008,6 +15169,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1608804376}
   m_CullTransparentMesh: 1
+--- !u!114 &1608804381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608804376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79c010bc6675d14a9308d2d1e9a45b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetImage: {fileID: 1793861577}
+  targetText: {fileID: 1181781331}
+  customText: 
 --- !u!1 &1622440782
 GameObject:
   m_ObjectHideFlags: 0
@@ -15044,20 +15220,21 @@ RectTransform:
   - {fileID: 1666071918}
   - {fileID: 165974315}
   - {fileID: 689278292}
-  - {fileID: 1010623849}
-  - {fileID: 631996940}
-  - {fileID: 921530596}
   - {fileID: 1493150992}
-  - {fileID: 614966572}
-  - {fileID: 1608094085}
+  - {fileID: 1010623849}
   - {fileID: 435089994}
-  - {fileID: 1608804377}
-  - {fileID: 1767004927}
   - {fileID: 346006811}
+  - {fileID: 614966572}
+  - {fileID: 1608804377}
+  - {fileID: 631996940}
   - {fileID: 292745891}
+  - {fileID: 1608094085}
+  - {fileID: 1767004927}
+  - {fileID: 921530596}
   - {fileID: 1269718029}
   - {fileID: 1819741240}
   - {fileID: 836670228}
+  - {fileID: 1793861576}
   - {fileID: 1181781330}
   m_Father: {fileID: 907047585}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15415,7 +15592,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 220.53003, y: -91.37305}
+  m_AnchoredPosition: {x: 187.09998, y: -91.372986}
   m_SizeDelta: {x: 142.79, y: 63.9392}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1666071919
@@ -15451,7 +15628,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Glove
+  m_Text: 'Gloves
 
 '
 --- !u!222 &1666071920
@@ -15709,8 +15886,9 @@ GameObject:
   - component: {fileID: 1767004930}
   - component: {fileID: 1767004929}
   - component: {fileID: 1767004928}
+  - component: {fileID: 1767004931}
   m_Layer: 5
-  m_Name: Monk Image (8)
+  m_Name: GoldGloves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15828,6 +16006,96 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1767004926}
+  m_CullTransparentMesh: 1
+--- !u!114 &1767004931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767004926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79c010bc6675d14a9308d2d1e9a45b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetImage: {fileID: 1793861577}
+  targetText: {fileID: 1181781331}
+  customText: 
+--- !u!1 &1793861575
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1793861576}
+  - component: {fileID: 1793861578}
+  - component: {fileID: 1793861577}
+  m_Layer: 5
+  m_Name: targetImage (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1793861576
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793861575}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1622440783}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -320.4548, y: -3.272}
+  m_SizeDelta: {x: 213.8385, y: 219.2918}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1793861577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793861575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1793861578
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793861575}
   m_CullTransparentMesh: 1
 --- !u!1 &1802179017
 GameObject:
