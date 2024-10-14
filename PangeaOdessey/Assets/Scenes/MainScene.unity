@@ -2741,7 +2741,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetImage: {fileID: 1793861577}
   targetText: {fileID: 1181781331}
-  customText: 
+  customText: "\uAE08 \uD5EC\uBA67 HP + 3"
 --- !u!1 &302849363
 GameObject:
   m_ObjectHideFlags: 0
@@ -3479,7 +3479,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetImage: {fileID: 1793861577}
   targetText: {fileID: 1181781331}
-  customText: 
+  customText: "\uCCA0 \uD5EC\uBA67 HP + 2"
 --- !u!1 &435089993
 GameObject:
   m_ObjectHideFlags: 0
@@ -3627,7 +3627,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetImage: {fileID: 1793861577}
   targetText: {fileID: 1181781331}
-  customText: "\uBE0C\uB860\uC988 \uD5EC\uBA67 HP+1"
+  customText: "\uAC00\uC8FD \uC7A5\uAC11 Damage + 10%"
 --- !u!1 &437953175
 GameObject:
   m_ObjectHideFlags: 0
@@ -6058,7 +6058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetImage: {fileID: 1793861577}
   targetText: {fileID: 1181781331}
-  customText: 
+  customText: "\uCCA0 \uAC11\uC637 HP + 4"
 --- !u!1 &616920177
 GameObject:
   m_ObjectHideFlags: 0
@@ -6430,7 +6430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetImage: {fileID: 1793861577}
   targetText: {fileID: 1181781331}
-  customText: 
+  customText: "\uCCA0 \uC2E0\uBC1C Speed + 20%"
 --- !u!1 &656336321
 GameObject:
   m_ObjectHideFlags: 0
@@ -6736,7 +6736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetImage: {fileID: 1793861577}
   targetText: {fileID: 1181781331}
-  customText: "\uBE0C\uB860\uC988 \uD5EC\uBA67 HP+1"
+  customText: "\uAC00\uC8FD \uD5EC\uBA67 HP + 1"
 --- !u!1 &694292982
 GameObject:
   m_ObjectHideFlags: 0
@@ -8630,7 +8630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetImage: {fileID: 1793861577}
   targetText: {fileID: 1181781331}
-  customText: 
+  customText: "\uAE08 \uC2E0\uBC1C Speed + 30%"
 --- !u!1 &934382940
 GameObject:
   m_ObjectHideFlags: 0
@@ -9394,7 +9394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetImage: {fileID: 1793861577}
   targetText: {fileID: 1181781331}
-  customText: "\uBE0C\uB860\uC988 \uD5EC\uBA67 HP+1"
+  customText: "\uAC00\uC8FD \uC2E0\uBC1C Speed + 10%"
 --- !u!1 &1016379866
 GameObject:
   m_ObjectHideFlags: 0
@@ -13668,7 +13668,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetImage: {fileID: 1793861577}
   targetText: {fileID: 1181781331}
-  customText: "\uBE0C\uB860\uC988 \uD5EC\uBA67 HP+1"
+  customText: "\uAC00\uC8FD \uAC11\uC637 HP + 2"
 --- !u!1 &1494481494
 GameObject:
   m_ObjectHideFlags: 0
@@ -15035,7 +15035,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetImage: {fileID: 1793861577}
   targetText: {fileID: 1181781331}
-  customText: 
+  customText: "\uAE08 \uAC11\uC637 HP + 6"
 --- !u!1 &1608804376
 GameObject:
   m_ObjectHideFlags: 0
@@ -15183,7 +15183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetImage: {fileID: 1793861577}
   targetText: {fileID: 1181781331}
-  customText: 
+  customText: "\uCCA0 \uC7A5\uAC11 Damage + 20%"
 --- !u!1 &1622440782
 GameObject:
   m_ObjectHideFlags: 0
@@ -16021,7 +16021,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetImage: {fileID: 1793861577}
   targetText: {fileID: 1181781331}
-  customText: 
+  customText: "\uAE08 \uC7A5\uAC11 Damage + 30%"
 --- !u!1 &1793861575
 GameObject:
   m_ObjectHideFlags: 0
