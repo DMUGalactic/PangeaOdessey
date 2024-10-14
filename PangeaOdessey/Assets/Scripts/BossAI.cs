@@ -32,7 +32,7 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
         public float fireCooldown = 1f; // 공격 간격
         public LayerMask playerLayer; // 플레이어 레이어 마스크
         public float detectionRadius = 5f; // 탐지 반경
-        public float health = 100f; // 보스의 체력
+        private float health; // 보스의 체력
         public float attackDamage = 10f; // 공격 시 데미지
         public float collisionDamage = 5f; // 충돌 시 데미지
 
@@ -43,9 +43,9 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
         public float projectileDamage = 5f; // 발사체 데미지
 
         public GameObject bigFirePrefab;
-        private float radius = 9f;
+        private float radius = 10f;
         private float count = 45;
-        private bool missionCheck = false;
+        private bool missionCheck = true;
 
         private Animator animator;
         private float lastAttackTime;
@@ -85,11 +85,6 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
             
             
         }
-        void Start()
-        {
-            CreateCirclePrefabs();
-        }
-
         
         void Update()
         {
@@ -167,7 +162,7 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
         INode.ENodeState CheckBossHP()
         {
             // 보스 체력확인
-            if(health < 30){
+            if(GameManager.instance.bossHealth < 30){
                 return INode.ENodeState.ENS_Success;
             }
             return INode.ENodeState.ENS_Failure;
@@ -178,9 +173,13 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
             // 이미 패턴 실행 했는지 확인
             if(missionCheck)
             {
-               //  _animator.SetTrigger("isBurning");
-                CreateCirclePrefabs(); 
+                _animator.SetTrigger("isBurning");
+                StartCoroutine(CreateCirclePrefabs());
+                missionCheck = false;
             }
+            if(IsAnimationRunning("Dragon_Burn"))
+                return INode.ENodeState.ENS_Running;
+
             return INode.ENodeState.ENS_Failure;
         }
 
@@ -316,12 +315,8 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
         #endregion
 
         #region func
-        public void ApplyAttackDamage()
-        {
-            
-        }
 
-        void SpawnProjectile()
+        public void SpawnProjectile()
         {
             float[] angles = { 0f, 10f, -10f };
             Vector2 playerDirection = ((Vector2)player.position - (Vector2)transform.position).normalized; // 방향 벡터 계산 및 정규화
@@ -404,26 +399,28 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
         {
             isLive = false;
             animator.SetTrigger("Dead");
-            // 보스가 죽은 후 처리할 로직 추가 (예: 일정 시간 후 제거)
+            
             Destroy(gameObject, 2f); // 2초 후 오브젝트 제거
         }
 
-        void CreateCirclePrefabs()
-    {
-        Vector2 playerPosition = transform.position; // 플레이어의 현재 위치 (2D)
-        float angleStep = 360f / count; // 각도 간격 계산
-
-        for (int i = 0; i < count; i++)
+        IEnumerator CreateCirclePrefabs()
         {
-            float angle = i * angleStep;
-            float radian = angle * Mathf.Deg2Rad; // 각도를 라디안으로 변환
-            float x = playerPosition.x + radius * Mathf.Cos(radian); // x좌표 계산
-            float y = playerPosition.y + radius * Mathf.Sin(radian); // y좌표 계산
+            Vector2 playerPosition = transform.position; // 플레이어의 현재 위치
+            float angleStep = 360f / count; // 각도 간격 계산
 
-            Vector2 spawnPosition = new Vector2(x, y); // 생성 위치 설정
-            Instantiate(bigFirePrefab, spawnPosition, Quaternion.identity); // 프리팹 생성
+            for (int i = 0; i < count; i++)
+            {
+                float angle = i * angleStep;
+                float radian = angle * Mathf.Deg2Rad; // 각도를 라디안으로 변환
+                float x = playerPosition.x + radius * Mathf.Cos(radian); // x좌표 계산
+                float y = playerPosition.y + radius * Mathf.Sin(radian); // y좌표 계산
+
+                Vector2 spawnPosition = new Vector2(x, y); // 생성 위치 설정
+                Instantiate(bigFirePrefab, spawnPosition, Quaternion.identity); // 프리팹 생성
+
+                yield return new WaitForSeconds(0.01f);
+            }
         }
-    }
         #endregion
 
     
