@@ -42,6 +42,11 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
         public float projectileSpawnDistance = 10f; // 발사체 생성 거리
         public float projectileDamage = 5f; // 발사체 데미지
 
+        public GameObject bigFirePrefab;
+        private float radius = 9f;
+        private float count = 45;
+        private bool missionCheck = false;
+
         private Animator animator;
         private float lastAttackTime;
         private float lastFireTime;
@@ -78,6 +83,11 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
             _BTRunner = new BehaviorTreeRunner(SettingBT());
             
+            
+        }
+        void Start()
+        {
+            CreateCirclePrefabs();
         }
 
         
@@ -87,36 +97,52 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
         }
         INode SettingBT()
         {
+
             return new SelectorNode
-                (
+                (   
                     new List<INode>()
                     {
                         new SequenceNode
                         (
                             new List<INode>()
                             {
-                                new ActionNode(CheckMeleeAttacking),
-                                new ActionNode(CheckEnemyWithinMeleeAttackRange),
-                                new ActionNode(DoMeleeAttack),
+                                new ActionNode(CheckBossHP),
+                                new ActionNode(StartBossMission)
                             }
                         ),
-                        new SequenceNode
+                        new SelectorNode
                         (
                             new List<INode>()
                             {
-                                new ActionNode(CheckRangedAttacking),
-                                new ActionNode(CheckEnemyWithinRangedAttackRange),
-                               new ActionNode(DoRangedAttack),
+                                new SequenceNode
+                                (
+                                    new List<INode>()
+                                    {
+                                        new ActionNode(CheckMeleeAttacking),
+                                        new ActionNode(CheckEnemyWithinMeleeAttackRange),
+                                        new ActionNode(DoMeleeAttack),
+                                    }
+                                ),
+                                new SequenceNode
+                                (
+                                    new List<INode>()
+                                    {
+                                        new ActionNode(CheckRangedAttacking),
+                                        new ActionNode(CheckEnemyWithinRangedAttackRange),
+                                    new ActionNode(DoRangedAttack),
+                                    }
+                                ),
+                                new SequenceNode
+                                (
+                                    new List<INode>()
+                                    {
+                                        new ActionNode(FlipToPlayer),
+                                        new ActionNode(MoveToEnemy),
+                                    }
+                                )
                             }
-                        ),
-                        new SequenceNode
-                        (
-                            new List<INode>()
-                            {
-                                new ActionNode(FlipToPlayer),
-                                new ActionNode(MoveToEnemy),
-                            }
-                        ),
+                        )
+                       
                         
                     }
                 );
@@ -137,6 +163,29 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
 
             return false;
         }
+        #region Check Boss HP 
+        INode.ENodeState CheckBossHP()
+        {
+            // 보스 체력확인
+            if(health < 30){
+                return INode.ENodeState.ENS_Success;
+            }
+            return INode.ENodeState.ENS_Failure;
+        }
+
+        INode.ENodeState StartBossMission()
+        {
+            // 이미 패턴 실행 했는지 확인
+            if(missionCheck)
+            {
+               //  _animator.SetTrigger("isBurning");
+                CreateCirclePrefabs(); 
+            }
+            return INode.ENodeState.ENS_Failure;
+        }
+
+        #endregion
+
 
         #region Melee Attack Node
         INode.ENodeState CheckMeleeAttacking()
@@ -358,9 +407,28 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
             // 보스가 죽은 후 처리할 로직 추가 (예: 일정 시간 후 제거)
             Destroy(gameObject, 2f); // 2초 후 오브젝트 제거
         }
+
+        void CreateCirclePrefabs()
+    {
+        Vector2 playerPosition = transform.position; // 플레이어의 현재 위치 (2D)
+        float angleStep = 360f / count; // 각도 간격 계산
+
+        for (int i = 0; i < count; i++)
+        {
+            float angle = i * angleStep;
+            float radian = angle * Mathf.Deg2Rad; // 각도를 라디안으로 변환
+            float x = playerPosition.x + radius * Mathf.Cos(radian); // x좌표 계산
+            float y = playerPosition.y + radius * Mathf.Sin(radian); // y좌표 계산
+
+            Vector2 spawnPosition = new Vector2(x, y); // 생성 위치 설정
+            Instantiate(bigFirePrefab, spawnPosition, Quaternion.identity); // 프리팹 생성
+        }
+    }
         #endregion
 
-    }
     
+    
+    
+    }
     
 }

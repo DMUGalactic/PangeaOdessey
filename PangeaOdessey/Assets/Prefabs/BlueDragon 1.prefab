@@ -74,7 +74,7 @@ MonoBehaviour:
   _movementSpeed: 10
   followDistance: 20
   attackDistance: 4
-  rangeAttackDistance: 6
+  rangeAttackDistance: 7
   runSpeed: 2
   attackCooldown: 1
   fireCooldown: 1
@@ -85,10 +85,11 @@ MonoBehaviour:
   health: 100
   attackDamage: 10
   collisionDamage: 5
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 1547789051345944078, guid: 0071ad87ee8a9b444947fd3cceb85afe, type: 3}
   projectileSpawnInterval: 2
   projectileSpawnDistance: 10
   projectileDamage: 5
+  bigFirePrefab: {fileID: 7455328089217502733, guid: c648c40b3aae2e342a075a472651b241, type: 3}
   Monster: {fileID: 0}
 --- !u!50 &336498791693560901
 Rigidbody2D:
