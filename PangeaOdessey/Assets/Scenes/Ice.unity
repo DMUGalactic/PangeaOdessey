@@ -8817,7 +8817,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &364852066
 Transform:
   m_ObjectHideFlags: 0
@@ -11940,9 +11940,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4eb0c3739c6b74e9549aae31c38166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 2
-  damageInterval: 2
-  damageEffectPrefab: {fileID: 0}
 --- !u!1 &947723693
 GameObject:
   m_ObjectHideFlags: 0
@@ -12884,9 +12881,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4eb0c3739c6b74e9549aae31c38166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 2
-  damageInterval: 2
-  damageEffectPrefab: {fileID: 0}
 --- !u!1 &1212709134
 GameObject:
   m_ObjectHideFlags: 0
@@ -14237,9 +14231,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4eb0c3739c6b74e9549aae31c38166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 2
-  damageInterval: 2
-  damageEffectPrefab: {fileID: 0}
 --- !u!1001 &1480613721
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15290,9 +15281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4eb0c3739c6b74e9549aae31c38166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 2
-  damageInterval: 2
-  damageEffectPrefab: {fileID: 0}
 --- !u!1 &1809469477
 GameObject:
   m_ObjectHideFlags: 0
