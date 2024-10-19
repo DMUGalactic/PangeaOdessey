@@ -20,10 +20,24 @@ public class Weapon : MonoBehaviour
     float timer;
     Player player;
 
+    // Equipment 스크립트 참조용 변수 추가 미적용
+    //Equipment equipment;
+
 
     void Awake()
     {
         player = GetComponentInParent<Player>();
+
+        // Equipment 컴포넌트 찾기, 미적용
+        /*
+        equipment = GetComponentInParent<Equipment>();
+
+        if (equipment != null)
+        {
+            // Equipment의 ED 값을 damage에 더함
+            damage += equipment.ED;
+        }
+        */
     }
 
 

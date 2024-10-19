@@ -6,16 +6,18 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
     [Header("# Game Control")]
     public float gameTime;
     public float maxGameTime = 2 * 10f;
-    public int bossMode = 0; // 0이면 일반맵, 1이면 보스맵
+    public int bossMode = 0;
+
     [Header("# Player info")]
     public bool isLive;
     public static int bitCoin = 0;
-    public float health = 100f; // int -> float
-    public float maxHealth = 100f; // int -> float
-    public float bossSpawnTime = 20f; // 보스 스폰 시간
+    public float health = 100f;
+    public float maxHealth = 100f;
+    public float bossSpawnTime = 20f;
     public int kill;
 
     [Header(" Game Object")]
@@ -23,12 +25,17 @@ public class GameManager : MonoBehaviour
     public Player player;
     public Text gold;
     public Text timer;
-    
+
+    /* 미적용 
+    [Header("# Equipment Reference")]
+    public Equipment equipment; // Equipment 스크립트 참조
+    */
+
     [Header("# Boss Info")]
-    public GameObject bossPrefab; // 보스 프리팹
-    public GameObject bossHUD; // 보스 HP UI
-    public float spawnRadius = 5f; // 플레이어 주위 스폰 반경
-    private bool bossSpawned = false; // 보스가 한 번만 스폰되도록 설정
+    public GameObject bossPrefab;
+    public GameObject bossHUD;
+    public float spawnRadius = 5f;
+    private bool bossSpawned = false;
 
     [Header("# Boss Health")]
     public float bossHealth;
@@ -52,70 +59,74 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        /* 미적용
+        // Equipment의 추가 체력을 maxHealth에 더함
+        if (equipment != null)
+        {
+            maxHealth += equipment.additionalHealth;
+        }
+        */
+
         health = maxHealth;
         bitCoin = 0;
         if (bossHUD != null)
         {
-            bossHUD.SetActive(false); // 게임 시작 시 보스 HP UI 비활성화
+            bossHUD.SetActive(false);
         }
     }
 
     void Update()
     {
         gameTime += Time.deltaTime;
-        
+
         if (bossMode == 1 && gameTime >= bossSpawnTime && !bossSpawned)
         {
             SpawnBoss();
         }
-        
+
         if (gameTime < maxGameTime)
         {
-            // 게임 오버 로직을 여기에 추가합니다.
             TimeSpan timeSpan = TimeSpan.FromSeconds(gameTime);
             string timeString = string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
             timer.text = timeString;
         }
-        if(bossMode == 0 && gameTime>=300 && health > 0){
-            // 일반맵 게임 클리어 시
-            // 클리어 패널 활성화 게임 일시정지
-            if(clear != null)
+
+        if (bossMode == 0 && gameTime >= 300 && health > 0)
+        {
+            if (clear != null)
                 clear.SetActive(true);
         }
 
-        gold.text = bitCoin.ToString()+ "G";
-        if(health < 0){
+        gold.text = bitCoin.ToString() + "G";
+        if (health <= 0)
+        {
             Debug.Log("플레이어 죽음");
             PlayerDead();
         }
     }
-    
+
     void SpawnBoss()
     {
         Vector2 spawnPosition = (Vector2)player.transform.position + UnityEngine.Random.insideUnitCircle * spawnRadius;
         GameObject boss = Instantiate(bossPrefab, spawnPosition, Quaternion.identity);
-        
-        // 보스 체력 설정
+
         BossControls bossControls = boss.GetComponent<BossControls>();
         maxBossHealth = bossControls.health;
         bossHealth = maxBossHealth;
 
         if (bossHUD != null)
         {
-
-            bossHUD.SetActive(true); // 보스가 스폰될 때 HP UI 활성화
+            bossHUD.SetActive(true);
         }
 
-        bossSpawned = true; // 보스를 한 번만 스폰되도록 설정
+        bossSpawned = true;
     }
-    
 
     public void TakeDamage(float amount)
     {
         health -= amount;
         if (health < 0) health = 0;
 
-        // 필요 시 플레이어가 죽었을 때 로직 추가
         if (health == 0)
         {
             PlayerDead();
@@ -126,13 +137,12 @@ public class GameManager : MonoBehaviour
     {
         gameover.SetActive(true);
     }
-    
+
     public void TakeBossDamage(float amount)
     {
         bossHealth -= amount;
         if (bossHealth < 0) bossHealth = 0;
 
-        // 필요 시 보스가 죽었을 때 로직 추가
         if (bossHealth <= 0)
         {
             BossDead();
