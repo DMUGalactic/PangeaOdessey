@@ -13,6 +13,7 @@ public class EquipmentManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            Debug.Log("EquipmentManager 인스턴스가 초기화되었습니다.");
         }
         else
         {
@@ -30,6 +31,7 @@ public class EquipmentManager : MonoBehaviour
         {
             equippedItems.Add(slotName, item);
         }
+        Debug.Log($"아이템 장착: 슬롯 {slotName}, 아이템 {item.name}");
         UpdateAllEquipmentSlots();
     }
 
@@ -38,6 +40,7 @@ public class EquipmentManager : MonoBehaviour
         if (equippedItems.ContainsKey(slotName))
         {
             equippedItems.Remove(slotName);
+            Debug.Log($"아이템 해제: 슬롯 {slotName}");
         }
         UpdateAllEquipmentSlots();
     }
@@ -53,8 +56,10 @@ public class EquipmentManager : MonoBehaviour
             totalHp += item.Hp;
             totalDamage += item.Damage;
             totalSpeed += item.Speed;
+            Debug.Log($"아이템 스탯 - 이름: {item.name}, HP: {item.Hp}, Damage: {item.Damage}, Speed: {item.Speed}");
         }
 
+        Debug.Log($"총합 스탯 - HP: {totalHp}, Damage: {totalDamage}, Speed: {totalSpeed}");
         return (totalHp, totalDamage, totalSpeed);
     }
 

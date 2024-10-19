@@ -17,4 +17,4 @@ MonoBehaviour:
   equipmentType: 0
   Hp: 0
   Damage: 0
-  Speed: 10
+  Speed: 3

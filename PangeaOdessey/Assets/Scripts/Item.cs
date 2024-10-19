@@ -16,6 +16,6 @@ public class Item : ScriptableObject
     public EquipmentType equipmentType;
 
     public int Hp;
-    public int Damage;
-    public int Speed;
+    public float Damage;
+    public float Speed;
 }

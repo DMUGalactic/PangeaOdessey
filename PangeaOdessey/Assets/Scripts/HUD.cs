@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,9 +10,8 @@ public class HUD : MonoBehaviour
     public Slider mySlider;
 
     void Awake()
-    { 
+    {
         myText = GetComponent<Text>();
-      
     }
 
     void LateUpdate()
@@ -26,7 +23,7 @@ public class HUD : MonoBehaviour
                 break;
 
             case Infotype.Kill:
-                myText.text = string.Format("{0:F0}", GameManager.instance.kill); // GameManager에서 코드 추가해야함
+                myText.text = string.Format("{0:F0}", GameManager.instance.kill);
                 break;
 
             case Infotype.Time:
@@ -49,14 +46,22 @@ public class HUD : MonoBehaviour
     void UpdateHealthUI()
     {
         float curHealth = GameManager.instance.health;
-        float maxHealth = GameManager.instance.maxHealth;
+        float maxHealth = GameManager.instance.GetMaxHealth();
+
+        // 현재 체력이 최대 체력을 초과하지 않도록 조정
+        if (curHealth > maxHealth)
+        {
+            curHealth = maxHealth;
+            GameManager.instance.health = maxHealth;
+        }
+
         mySlider.value = curHealth / maxHealth;
     }
 
     void UpdateBossHPUI()
     {
-    float curBossHealth = GameManager.instance.bossHealth;
-    float maxBossHealth = GameManager.instance.maxBossHealth;
-    mySlider.value = curBossHealth / maxBossHealth;
+        float curBossHealth = GameManager.instance.bossHealth;
+        float maxBossHealth = GameManager.instance.maxBossHealth;
+        mySlider.value = curBossHealth / maxBossHealth;
     }
 }

@@ -1707,13 +1707,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 307035263479348219, guid: 10c5e1a945857cc49bdeb88d7aa9f791, type: 3}
+      propertyPath: baseSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 933428860942890658, guid: 10c5e1a945857cc49bdeb88d7aa9f791, type: 3}
       propertyPath: m_Name
       value: Monk
       objectReference: {fileID: 0}
+    - target: {fileID: 933428860942890658, guid: 10c5e1a945857cc49bdeb88d7aa9f791, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1630234451263585805, guid: 10c5e1a945857cc49bdeb88d7aa9f791, type: 3}
       propertyPath: prefabId
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1630234451263585805, guid: 10c5e1a945857cc49bdeb88d7aa9f791, type: 3}
+      propertyPath: baseDamage
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2158611122094458675, guid: 10c5e1a945857cc49bdeb88d7aa9f791, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1759,6 +1771,10 @@ PrefabInstance:
       propertyPath: prefabId
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2442232441211959233, guid: 10c5e1a945857cc49bdeb88d7aa9f791, type: 3}
+      propertyPath: baseDamage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2875948711719243713, guid: 10c5e1a945857cc49bdeb88d7aa9f791, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1766,6 +1782,18 @@ PrefabInstance:
     - target: {fileID: 3324192590948020689, guid: 10c5e1a945857cc49bdeb88d7aa9f791, type: 3}
       propertyPath: prefabId
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3324192590948020689, guid: 10c5e1a945857cc49bdeb88d7aa9f791, type: 3}
+      propertyPath: baseDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076569216709961506, guid: 10c5e1a945857cc49bdeb88d7aa9f791, type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076569216709961506, guid: 10c5e1a945857cc49bdeb88d7aa9f791, type: 3}
+      propertyPath: baseDamage
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5098442159010509087, guid: 10c5e1a945857cc49bdeb88d7aa9f791, type: 3}
       propertyPath: spawnData.Array.data[0].audio
@@ -1815,6 +1843,10 @@ PrefabInstance:
       propertyPath: prefabId
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5892264197473877194, guid: 10c5e1a945857cc49bdeb88d7aa9f791, type: 3}
+      propertyPath: baseDamage
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6474045244987047014, guid: 10c5e1a945857cc49bdeb88d7aa9f791, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -1823,9 +1855,17 @@ PrefabInstance:
       propertyPath: prefabId
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 7163817734920345467, guid: 10c5e1a945857cc49bdeb88d7aa9f791, type: 3}
+      propertyPath: baseDamage
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7302021682702045661, guid: 10c5e1a945857cc49bdeb88d7aa9f791, type: 3}
       propertyPath: prefabId
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7302021682702045661, guid: 10c5e1a945857cc49bdeb88d7aa9f791, type: 3}
+      propertyPath: baseDamage
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8427943600532628297, guid: 10c5e1a945857cc49bdeb88d7aa9f791, type: 3}
       propertyPath: m_IsActive
@@ -1835,9 +1875,17 @@ PrefabInstance:
       propertyPath: prefabId
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8599075667011626760, guid: 10c5e1a945857cc49bdeb88d7aa9f791, type: 3}
+      propertyPath: baseDamage
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8915480279124018234, guid: 10c5e1a945857cc49bdeb88d7aa9f791, type: 3}
       propertyPath: prefabId
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8915480279124018234, guid: 10c5e1a945857cc49bdeb88d7aa9f791, type: 3}
+      propertyPath: baseDamage
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8177457313161849676, guid: 10c5e1a945857cc49bdeb88d7aa9f791, type: 3}
@@ -3607,7 +3655,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 3
   prefabId: 10
-  damage: 30
+  baseDamage: 10
   count: 5
   speed: 0
 --- !u!1 &629687854
@@ -14904,7 +14952,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 4
   prefabId: 11
-  damage: 7
+  baseDamage: 0.1
   count: 5
   speed: 0
 --- !u!1 &1640209710
