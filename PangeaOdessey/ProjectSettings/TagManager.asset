@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bullet
+  - Area
+  - Enemy
+  - Shop2
+  - Gold
+  - Shop4
+  - Shop1
+  - Shop3
+  - Ground
   layers:
   - Default
   - TransparentFX
