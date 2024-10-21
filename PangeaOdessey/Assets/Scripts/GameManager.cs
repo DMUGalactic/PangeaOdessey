@@ -10,11 +10,12 @@ public class GameManager : MonoBehaviour
     public float gameTime;
     public float maxGameTime = 2 * 10f;
     public int bossMode = 0; // 0이면 일반맵, 1이면 보스맵
+
     [Header("# Player info")]
     public bool isLive;
     public static int bitCoin = 0;
-    public float health = 100f; // int -> float
-    public float maxHealth = 100f; // int -> float
+    public float health = 100f; // 현재 체력
+    public float baseMaxHealth = 100f; // 기본 최대 체력 (이름 변경)
     public float bossSpawnTime = 20f; // 보스 스폰 시간
     public int kill;
 
@@ -23,7 +24,7 @@ public class GameManager : MonoBehaviour
     public Player player;
     public Text gold;
     public Text timer;
-    
+
     [Header("# Boss Info")]
     public GameObject bossPrefab; // 보스 프리팹
     public GameObject bossHUD; // 보스 HP UI
@@ -52,7 +53,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        health = maxHealth;
+        health = GetMaxHealth(); // 초기 체력을 최대 체력으로 설정
         bitCoin = 0;
         if (bossHUD != null)
         {
@@ -63,12 +64,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         gameTime += Time.deltaTime;
-        
+
         if (bossMode == 1 && gameTime >= bossSpawnTime && !bossSpawned)
         {
             SpawnBoss();
         }
-        
+
         if (gameTime < maxGameTime)
         {
             // 게임 오버 로직을 여기에 추가합니다.
@@ -76,25 +77,29 @@ public class GameManager : MonoBehaviour
             string timeString = string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
             timer.text = timeString;
         }
-        if(bossMode == 0 && gameTime>=300 && health > 0){
+
+        if (bossMode == 0 && gameTime >= 300 && health > 0)
+        {
             // 일반맵 게임 클리어 시
             // 클리어 패널 활성화 게임 일시정지
-            if(clear != null)
+            if (clear != null)
                 clear.SetActive(true);
         }
 
-        gold.text = bitCoin.ToString()+ "G";
-        if(health < 0){
+        gold.text = bitCoin.ToString() + "G";
+
+        if (health <= 0)
+        {
             Debug.Log("플레이어 죽음");
             PlayerDead();
         }
     }
-    
+
     void SpawnBoss()
     {
         Vector2 spawnPosition = (Vector2)player.transform.position + UnityEngine.Random.insideUnitCircle * spawnRadius;
         GameObject boss = Instantiate(bossPrefab, spawnPosition, Quaternion.identity);
-        
+
         // 보스 체력 설정
         BossControls bossControls = boss.GetComponent<BossControls>();
         maxBossHealth = bossControls.health;
@@ -102,18 +107,23 @@ public class GameManager : MonoBehaviour
 
         if (bossHUD != null)
         {
-
             bossHUD.SetActive(true); // 보스가 스폰될 때 HP UI 활성화
         }
 
         bossSpawned = true; // 보스를 한 번만 스폰되도록 설정
     }
-    
 
     public void TakeDamage(float amount)
     {
         health -= amount;
-        if (health < 0) health = 0;
+
+        // 현재 체력이 최대 체력을 초과하지 않도록 조정
+        float maxHealth = GetMaxHealth();
+        if (health > maxHealth)
+            health = maxHealth;
+
+        if (health < 0)
+            health = 0;
 
         // 필요 시 플레이어가 죽었을 때 로직 추가
         if (health == 0)
@@ -124,9 +134,10 @@ public class GameManager : MonoBehaviour
 
     void PlayerDead()
     {
-        gameover.SetActive(true);
+        if (gameover != null)
+            gameover.SetActive(true);
     }
-    
+
     public void TakeBossDamage(float amount)
     {
         bossHealth -= amount;
@@ -142,6 +153,18 @@ public class GameManager : MonoBehaviour
     void BossDead()
     {
         Time.timeScale = 0f;
-        clear.SetActive(true);
+        if (clear != null)
+            clear.SetActive(true);
+    }
+
+    // 추가된 메서드: EquipmentManager의 HP를 포함한 최대 체력 계산
+    public float GetMaxHealth()
+    {
+        float equipmentHp = 0f;
+        if (EquipmentManager.Instance != null)
+        {
+            equipmentHp = EquipmentManager.Instance.GetTotalStats().hp;
+        }
+        return baseMaxHealth + equipmentHp;
     }
 }
