@@ -69,21 +69,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f0ad4b6a0498dd4f8b0ddc42cb5ae3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _detectRange: 10
-  _meleeAttackRange: 5
-  _movementSpeed: 10
+  bossRunSpeed: 4
+  attackCooldown: 2
   followDistance: 20
   attackDistance: 4
   rangeAttackDistance: 7
-  runSpeed: 2
-  attackCooldown: 1
-  fireCooldown: 1
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 0
   detectionRadius: 10
-  health: 100
-  attackDamage: 10
   collisionDamage: 5
   projectilePrefab: {fileID: 1547789051345944078, guid: 0071ad87ee8a9b444947fd3cceb85afe, type: 3}
   projectileSpawnInterval: 2
@@ -379,13 +370,15 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 1}
-      - {x: -0.5233674, y: 0.85489464}
+    - - {x: 1.8549622, y: 0.30364943}
+      - {x: 1.0206063, y: 1.5708475}
+      - {x: -1.0431206, y: 2.6288228}
       - {x: -0.9912773, y: 0.28220347}
-      - {x: -0.70844775, y: -0.82242405}
-      - {x: -1.0023359, y: -2.3721328}
-      - {x: 0.41349542, y: -2.3776324}
-      - {x: 1.1421239, y: -1.8719883}
-      - {x: 1.2716737, y: -0.91558146}
-      - {x: 0.9510565, y: 0.30901712}
+      - {x: -1.0075836, y: -0.81341326}
+      - {x: -0.96774006, y: -4.4306445}
+      - {x: 1.191924, y: -3.4501338}
+      - {x: 1.6956718, y: -2.4774327}
+      - {x: 1.8709781, y: -1.7013597}
+      - {x: 1.9117136, y: -1.5210259}
+      - {x: 1.9197676, y: -0.12344271}
   m_UseDelaunayMesh: 0

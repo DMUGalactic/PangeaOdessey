@@ -4,74 +4,70 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
+
     [RequireComponent(typeof(Animator))]
     public class BossAI : MonoBehaviour
     {
-        [Header("Range")]
-        [SerializeField]
-        float _detectRange = 10f;
-        [SerializeField]
-        float _meleeAttackRange = 3f;
-        
-
-        [Header("Movement")]
-        [SerializeField]
-        float _movementSpeed = 10f;
-
         Vector2 _originPos = default;
         BehaviorTreeRunner _BTRunner = null;
         Transform _detectedPlayer = null;
         Animator _animator = null;
+        private Vector2 lastPlayerPosition; 
+        private Rigidbody2D rigid;
+        private Rigidbody2D player;
+        private Collider2D attackRange; // 공격 범위를 나타내는 Collider
+        Vector3 scale;
 
-        public float followDistance = 15f; // 플레이어를 추적할 최대 거리
-        public float attackDistance = 4f; // 공격을 시작할 거리
-        public float rangeAttackDistance = 6f;
-        public float runSpeed = 1f;
-        public float attackCooldown = 2f; // 공격 간격
-        public float fireCooldown = 1f; // 공격 간격
-        public LayerMask playerLayer; // 플레이어 레이어 마스크
-        public float detectionRadius = 5f; // 탐지 반경
-        private float health; // 보스의 체력
-        public float attackDamage = 10f; // 공격 시 데미지
-        public float collisionDamage = 5f; // 충돌 시 데미지
+        [Header("Damage")]
+        [SerializeField]
+        private float collisionDamage = 5f; // 보스 충돌 시 데미지
+        [SerializeField]
+        private float meleeAttackDamage = 10f;
+
+        [Header("Speed")]
+        [SerializeField]
+        private float bossRunSpeed = 1f; // 보스 이동속도
+        
+        [Header("CoolTime")]
+        [SerializeField]
+        private float meleeAttackCoolTime = 2f; // 근접 공격 간격
+        [SerializeField]
+        private float fireCooldown = 3f; // 원거리 공격 간격
+
+        [Header("Distance")]
+        [SerializeField]
+        private float followDistance = 15f; // 플레이어를 추적할 최대 거리
+        [SerializeField]
+        private float attackDistance = 3f; // 공격을 시작할 거리
+        [SerializeField]
+        private float rangeAttackDistance = 5f;
 
         [Header("# Projectile Info")]
         public GameObject projectilePrefab; // 발사체 프리팹
-        public float projectileSpawnInterval = 2f; // 발사체 생성 간격
-        public float projectileSpawnDistance = 10f; // 발사체 생성 거리
         public float projectileDamage = 5f; // 발사체 데미지
 
-        public GameObject bigFirePrefab;
-        private float radius = 10f;
-        private float count = 45;
+        [Header("Boss Pattern Info")]
+        public GameObject bigFirePrefab; // 불꽃 프리펩
+        private float radius = 10f;    // 원 반지름
+        private float count = 45;       // 생성 프리펩 개수
         private bool missionCheck = true;
 
-        private Animator animator;
-        private float lastAttackTime;
+        // Check
+        private float lastMeleeAttackTime;
+        private float lastMeleeApplyTime = 0f;
         private float lastFireTime;
         private bool isLive = true;
-        private Rigidbody2D rigid;
-        private Rigidbody2D player;
-        private Vector2 lastPlayerPosition;
-        private Collider2D attackRange; // 공격 범위를 나타내는 Collider
-       
-
-        Vector3 scale;
-
-
-        public Monster Monster;
         private bool isFlipping = false;
-        private float MellAttackCooldownTime = 2f;
-        private float lastActionTime = 0f;
-        private float fireCheck = 0f;
-
+        
+        // Animation & Trigger Name
         const string _ATTACK_ANIM_STATE_NAME = "Dragon_Attack";
         const string _ATTACK_ANIM_TIRGGER_NAME = "isAttacking";
-        const string _RUN_ANIM_STATE_NAME = "Dragon_Run";
-        const string _RUN_ANIM_TIRGGER_NAME = "isMoving";
         const string _FIRE_ANIM_STATE_NAME = "Dragon_Fire";
         const string _FIRE_ANIM_TIRGGER_NAME = "isFiring";
+        const string _RUN_ANIM_TIRGGER_NAME = "isMoving";
+        const string _BURN_ANIM_STATE_NAME = "Dragon_Burn";
+        const string _BURN_ANIM_TIRGGER_NAME = "isBurning";
+        const string _DEATH_ANIM_TIRGGER_NAME = "Death";
 
         void Awake()
         {
@@ -92,7 +88,6 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
         }
         INode SettingBT()
         {
-
             return new SelectorNode
                 (   
                     new List<INode>()
@@ -124,15 +119,16 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
                                     {
                                         new ActionNode(CheckRangedAttacking),
                                         new ActionNode(CheckEnemyWithinRangedAttackRange),
-                                    new ActionNode(DoRangedAttack),
+                                        new ActionNode(DoRangedAttack),
                                     }
                                 ),
                                 new SequenceNode
                                 (
                                     new List<INode>()
                                     {
+                                        new ActionNode(Die),
                                         new ActionNode(FlipToPlayer),
-                                        new ActionNode(MoveToEnemy),
+                                        new ActionNode(MoveToEnemy)
                                     }
                                 )
                             }
@@ -162,7 +158,7 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
         INode.ENodeState CheckBossHP()
         {
             // 보스 체력확인
-            if(GameManager.instance.bossHealth < 30){
+            if(GameManager.instance.bossHealth < 90){
                 return INode.ENodeState.ENS_Success;
             }
             return INode.ENodeState.ENS_Failure;
@@ -173,11 +169,11 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
             // 이미 패턴 실행 했는지 확인
             if(missionCheck)
             {
-                _animator.SetTrigger("isBurning");
+                _animator.SetTrigger(_BURN_ANIM_TIRGGER_NAME);
                 StartCoroutine(CreateCirclePrefabs());
                 missionCheck = false;
             }
-            if(IsAnimationRunning("Dragon_Burn"))
+            if(IsAnimationRunning(_BURN_ANIM_STATE_NAME))
                 return INode.ENodeState.ENS_Running;
 
             return INode.ENodeState.ENS_Failure;
@@ -189,7 +185,7 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
         #region Melee Attack Node
         INode.ENodeState CheckMeleeAttacking()
         {
-            if (IsAnimationRunning("Dragon_Attack"))
+            if (IsAnimationRunning(_ATTACK_ANIM_STATE_NAME))
             {
                 attackRange.enabled = true;
                 
@@ -203,9 +199,9 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
         {
             if(player != null){
                 float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-                if (distanceToPlayer < attackDistance && Time.time > lastAttackTime + attackCooldown)
+                if (distanceToPlayer < attackDistance && Time.time > lastMeleeAttackTime + meleeAttackCoolTime)
                 {
-                    Debug.Log(distanceToPlayer);
+                    
                     return INode.ENodeState.ENS_Success;
                 }
                 return INode.ENodeState.ENS_Failure;
@@ -220,7 +216,7 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
             {
                     _animator.SetTrigger(_ATTACK_ANIM_TIRGGER_NAME);
                     
-                    lastAttackTime = Time.time;
+                    lastMeleeAttackTime = Time.time;
                     return INode.ENodeState.ENS_Success;
             }
 
@@ -231,7 +227,7 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
         #region Ranged Attack Node
         INode.ENodeState CheckRangedAttacking()
         {
-            if (IsAnimationRunning("Dragon_Fire"))
+            if (IsAnimationRunning(_FIRE_ANIM_STATE_NAME))
             {
                 return INode.ENodeState.ENS_Running;
             }
@@ -242,10 +238,11 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
         INode.ENodeState CheckEnemyWithinRangedAttackRange()
         {
             float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-            if (distanceToPlayer > attackDistance &&  distanceToPlayer < 15f && Time.time > lastFireTime + fireCooldown )
+            if (distanceToPlayer > rangeAttackDistance &&  distanceToPlayer < 15f && Time.time > lastFireTime )
             {
                 return INode.ENodeState.ENS_Success;
             }
+            
               
             return INode.ENodeState.ENS_Failure;
         }
@@ -254,9 +251,9 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
         {
             if (player != null)
             {
-                _animator.SetTrigger("isFiring");
+                _animator.SetTrigger(_FIRE_ANIM_TIRGGER_NAME);
                 //SpawnProjectile();
-                lastFireTime = Time.time;
+                lastFireTime = Time.time + fireCooldown;
                 
                 return INode.ENodeState.ENS_Success;
             }
@@ -292,14 +289,14 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
         INode.ENodeState MoveToEnemy()
         {
             float distanceToPlayer = Vector2.Distance(transform.position, player.position);          
-            if (IsAnimationRunning("Dragon_Attack"))
+            if (IsAnimationRunning(_ATTACK_ANIM_STATE_NAME) || IsAnimationRunning(_FIRE_ANIM_STATE_NAME))
             {
                 return INode.ENodeState.ENS_Running;
             }
             else if ( distanceToPlayer < followDistance)
             {
                 Vector2 dirVec = player.position - rigid.position;
-                Vector2 nextVec = dirVec.normalized * runSpeed * Time.fixedDeltaTime;
+                Vector2 nextVec = dirVec.normalized * bossRunSpeed * Time.fixedDeltaTime;
                 rigid.MovePosition(rigid.position + nextVec);
                 rigid.velocity = Vector2.zero;
                 _animator.SetTrigger(_RUN_ANIM_TIRGGER_NAME);
@@ -311,6 +308,17 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
             }
 
             return INode.ENodeState.ENS_Failure;
+        }
+        INode.ENodeState Die()
+        {
+            if(GameManager.instance.bossHealth <= 0)
+            {
+                _animator.SetBool(_DEATH_ANIM_TIRGGER_NAME,true);
+                Debug.Log("보스 죽음");
+                Destroy(gameObject, 2f); // 2초 후 오브젝트 제거
+            }
+
+            return INode.ENodeState.ENS_Success;
         }
         #endregion
 
@@ -344,19 +352,6 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
             }
         }
 
-        public void TakeDamage(float amount)
-        {
-            if (!isLive) return;
-
-            health -= amount;
-            //GameManager.instance.UpdateBossHealth(health);
-
-            if (health <= 0)
-            {
-                Die();
-            }
-        }
-
         void OnTriggerEnter2D(Collider2D collision)
         {
             
@@ -374,13 +369,13 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
         void OnTriggerStay2D(Collider2D collision)
         {
             
-            if (collision.CompareTag("Player") && IsAnimationRunning("Attack"))
+            if (collision.CompareTag("Player") && IsAnimationRunning(_ATTACK_ANIM_STATE_NAME))
             {
-                if(Time.time >= lastActionTime + MellAttackCooldownTime)
-                {                
-                    GameManager.instance.TakeDamage(GameManager.instance.bossDamageAmount);
-                    Debug.Log("근접 공격 판정");
-                      lastActionTime = Time.time;
+                if(Time.time >= lastMeleeApplyTime + meleeAttackCoolTime)
+                {           
+                    GameManager.instance.TakeDamage(meleeAttackDamage);
+                    //Debug.Log("근접 공격 판정"+ GameManager.instance.health );
+                    lastMeleeApplyTime = Time.time;
                 } 
             }
             
@@ -391,17 +386,10 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
             if (collision.gameObject.CompareTag("Player"))
             {
                 GameManager.instance.TakeDamage(collisionDamage);
-                Debug.Log("몸박");
+                //Debug.Log("몸박");
             }
         }
 
-        void Die()
-        {
-            isLive = false;
-            animator.SetTrigger("Dead");
-            
-            Destroy(gameObject, 2f); // 2초 후 오브젝트 제거
-        }
 
         IEnumerator CreateCirclePrefabs()
         {
@@ -428,4 +416,3 @@ namespace Assets.PixelFantasy.PixelMonsters.Common.Scripts{
     
     }
     
-}

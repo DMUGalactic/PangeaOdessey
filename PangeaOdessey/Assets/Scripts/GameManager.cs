@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
     [Header("# Game Control")]
     public float gameTime;
     public float maxGameTime = 2 * 10f;
@@ -64,6 +65,7 @@ public class GameManager : MonoBehaviour
         if (bossMode == 1 && gameTime >= bossSpawnTime && !bossSpawned)
         {
             SpawnBoss();
+            Debug.Log("보스 스폰");
         }
         
         if (gameTime < maxGameTime)
@@ -93,13 +95,11 @@ public class GameManager : MonoBehaviour
         GameObject boss = Instantiate(bossPrefab, spawnPosition, Quaternion.identity);
         
         // 보스 체력 설정
-        BossControls bossControls = boss.GetComponent<BossControls>();
-        maxBossHealth = bossControls.health;
         bossHealth = maxBossHealth;
 
         if (bossHUD != null)
         {
-
+            Debug.Log("HUD 활성화");
             bossHUD.SetActive(true); // 보스가 스폰될 때 HP UI 활성화
         }
 
@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour
         // 필요 시 보스가 죽었을 때 로직 추가
         if (bossHealth <= 0)
         {
-            BossDead();
+            Invoke("BossDead", 10f);
         }
     }
 
@@ -141,4 +141,6 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         clear.SetActive(true);
     }
+
 }
+
