@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -42,6 +43,8 @@ public class GameManager : MonoBehaviour
     [Header("# Panel")]
     public GameObject clear;
     public GameObject gameover;
+
+    public StageData stageData;
     
     void Awake()
     {
@@ -140,6 +143,44 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         clear.SetActive(true);
+    }
+
+    public void StageClear()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+        if(stageData != null)
+        {
+            switch(currentScene)
+            {
+                case "Grass":
+                    stageData.grassStage_2 = true;
+                    break;
+                case "GrassBoss":
+                    stageData.iceStage_1 = true;
+                    break;
+                case "Ice":
+                    stageData.iceStage_2 = true;
+                    break;
+                case "IceBoss":
+                    stageData.fireStage_1 = true;
+                    break;
+                case "Fire":
+                    stageData.fireStage_2 = true;
+                    break;
+                case "FireBoss":
+                    stageData.darkStage_1 = true;
+                    break;
+                case "Dark":
+                    stageData.darkStage_2 = true;
+                    break;
+
+                default:
+                    break;
+
+            }
+            
+        }
+            
     }
 
 }

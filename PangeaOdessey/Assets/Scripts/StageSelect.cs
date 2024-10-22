@@ -30,4 +30,15 @@ public class StageSelect : MonoBehaviour
         "어둠2",
         "어둠3"
     };
+    public bool[] stageBool = new bool[]
+    {
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+    };
 }
