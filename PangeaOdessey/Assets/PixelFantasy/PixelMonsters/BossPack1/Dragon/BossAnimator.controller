@@ -17,7 +17,7 @@ AnimatorStateMachine:
     m_Position: {x: -190, y: -180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7685262091348281319}
-    m_Position: {x: 260, y: 10, z: 0}
+    m_Position: {x: 270, y: -10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2842367123287689417}
     m_Position: {x: -210, y: -70, z: 0}
@@ -257,12 +257,6 @@ AnimatorController:
   m_Name: BossAnimator
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Death
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
   - m_Name: Action
     m_Type: 4
     m_DefaultFloat: 0
@@ -293,8 +287,8 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: isDeath
-    m_Type: 9
+  - m_Name: Death
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
