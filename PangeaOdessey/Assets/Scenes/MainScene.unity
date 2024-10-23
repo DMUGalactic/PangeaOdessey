@@ -515,6 +515,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 16002352}
   m_CullTransparentMesh: 1
+--- !u!1 &24198692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 24198694}
+  - component: {fileID: 24198693}
+  m_Layer: 0
+  m_Name: StageManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &24198693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24198692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2ebccd7239e2f843b2d2369551b3237, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageButton1: {fileID: 1964573139}
+  stageButton2: {fileID: 57220978}
+  stageButton3: {fileID: 781692954}
+  stageButton4: {fileID: 1547861939}
+  stageButton5: {fileID: 2003548266}
+  stageButton6: {fileID: 437953177}
+  stageButton7: {fileID: 2006317993}
+  stageButton8: {fileID: 622820141}
+  stageData: {fileID: 11400000, guid: f8a1f1d3c42c2c04192af067eba4b9e5, type: 2}
+--- !u!4 &24198694
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24198692}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 899.3213, y: 544.3643, z: -0.54521567}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &25402071
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,7 +804,7 @@ GameObject:
   - component: {fileID: 46736503}
   - component: {fileID: 46736502}
   m_Layer: 5
-  m_Name: Stage6 Button
+  m_Name: Stage Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -896,7 +949,7 @@ GameObject:
   - component: {fileID: 57220979}
   - component: {fileID: 57220978}
   m_Layer: 5
-  m_Name: Stage5 Button
+  m_Name: Stage2 Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -961,7 +1014,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 57220979}
   m_OnClick:
     m_PersistentCalls:
@@ -1248,6 +1301,7 @@ MonoBehaviour:
   - "\uCD9C\uAD6C \uC5C6\uB294 \uC0AC\uB9C9"
   - "\uD558\uB9C8\uB2E4"
   - "\uB354 \uAC70\uB300\uD55C \uC232"
+  stageBool: 0100000000000000
 --- !u!114 &96484757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1289,85 +1343,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 96484754}
-  m_CullTransparentMesh: 1
---- !u!1 &123414792
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 123414793}
-  - component: {fileID: 123414795}
-  - component: {fileID: 123414794}
-  m_Layer: 5
-  m_Name: Text (Legacy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &123414793
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 123414792}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 520544884}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &123414794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 123414792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: 0c625bd5b90fbbe4b89e41d5fe40ae7d, type: 3}
-    m_FontSize: 29
-    m_FontStyle: 1
-    m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 50
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: 2 - 3
---- !u!222 &123414795
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 123414792}
   m_CullTransparentMesh: 1
 --- !u!1 &134984579
 GameObject:
@@ -2421,7 +2396,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1 - 1
+  m_Text: 2 - 1
 --- !u!222 &277888412
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2889,7 +2864,7 @@ GameObject:
   - component: {fileID: 437953178}
   - component: {fileID: 437953177}
   m_Layer: 5
-  m_Name: Stage5 Button
+  m_Name: Stage6 Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2954,7 +2929,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 437953178}
   m_OnClick:
     m_PersistentCalls:
@@ -4271,12 +4246,12 @@ GameObject:
   - component: {fileID: 520544886}
   - component: {fileID: 520544885}
   m_Layer: 5
-  m_Name: Stage6 Button
+  m_Name: Stage Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &520544884
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4288,8 +4263,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 123414793}
+  m_Children: []
   m_Father: {fileID: 870509491}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -5251,7 +5225,7 @@ GameObject:
   - component: {fileID: 622820142}
   - component: {fileID: 622820141}
   m_Layer: 5
-  m_Name: Stage5 Button
+  m_Name: Stage8 Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6001,7 +5975,7 @@ GameObject:
   - component: {fileID: 781692955}
   - component: {fileID: 781692954}
   m_Layer: 5
-  m_Name: Stage1 Button
+  m_Name: Stage3 Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6066,7 +6040,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 781692955}
   m_OnClick:
     m_PersistentCalls:
@@ -6197,6 +6171,7 @@ MonoBehaviour:
   - "\uCD9C\uAD6C \uC5C6\uB294 \uC0AC\uB9C9"
   - "\uD558\uB9C8\uB2E4"
   - "\uB354 \uAC70\uB300\uD55C \uC232"
+  stageBool: 0100000000000000
 --- !u!114 &819495844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7708,6 +7683,7 @@ MonoBehaviour:
   - "\uB354 \uAC70\uB300\uD55C \uC232"
   - "\uB354 \uAC70\uB300\uD55C \uC232"
   - "\uB354 \uAC70\uB300\uD55C \uC232"
+  stageBool: 0100000000000000
 --- !u!114 &987738824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7856,6 +7832,7 @@ MonoBehaviour:
   - "\uB354 \uAC70\uB300\uD55C \uC232"
   - "\uB354 \uAC70\uB300\uD55C \uC232"
   - "\uB354 \uAC70\uB300\uD55C \uC232"
+  stageBool: 0100000000000000
 --- !u!1 &1018467009
 GameObject:
   m_ObjectHideFlags: 0
@@ -7992,6 +7969,7 @@ MonoBehaviour:
   - "\uACE0\uC694\uD55C \uC124\uC6D0"
   - "\uC124\uC0B0\uC758 \uADF8\uB9BC\uC790"
   - "\uC544\uBAAC\uC758 \uACE8\uC9DC\uAE30"
+  stageBool: 0100000000000000
 --- !u!114 &1025093969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8378,7 +8356,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1 - 2
+  m_Text: 2 - 2
 --- !u!222 &1076400595
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10183,12 +10161,12 @@ GameObject:
   - component: {fileID: 1331559127}
   - component: {fileID: 1331559126}
   m_Layer: 5
-  m_Name: Stage3 Button
+  m_Name: Stage Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1331559125
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10649,6 +10627,7 @@ MonoBehaviour:
   - "\uACE0\uC694\uD55C \uC124\uC6D0"
   - "\uC124\uC0B0\uC758 \uADF8\uB9BC\uC790"
   - "\uC544\uBAAC\uC758 \uACE8\uC9DC\uAE30"
+  stageBool: 0100000000000000
 --- !u!1 &1402643096
 GameObject:
   m_ObjectHideFlags: 0
@@ -11334,12 +11313,12 @@ GameObject:
   - component: {fileID: 1484664165}
   - component: {fileID: 1484664164}
   m_Layer: 5
-  m_Name: Stage6 Button
+  m_Name: Stage Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1484664163
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11964,7 +11943,7 @@ GameObject:
   - component: {fileID: 1547861940}
   - component: {fileID: 1547861939}
   m_Layer: 5
-  m_Name: Stage2 Button
+  m_Name: Stage4 Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12029,7 +12008,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1547861940}
   m_OnClick:
     m_PersistentCalls:
@@ -12245,7 +12224,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 2 - 1
+  m_Text: 1 - 1
 --- !u!222 &1562666367
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12405,7 +12384,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 2 - 2
+  m_Text: 1 - 2
 --- !u!222 &1575227136
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13653,6 +13632,7 @@ MonoBehaviour:
   - "\uC5B4\uB4601"
   - "\uC5B4\uB4602"
   - "\uC5B4\uB4603"
+  stageBool: 0100000000000000
 --- !u!114 &1928095721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13783,7 +13763,7 @@ GameObject:
   - component: {fileID: 1964573140}
   - component: {fileID: 1964573139}
   m_Layer: 5
-  m_Name: Stage4 Button
+  m_Name: Stage1 Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14176,7 +14156,7 @@ GameObject:
   - component: {fileID: 2003548267}
   - component: {fileID: 2003548266}
   m_Layer: 5
-  m_Name: Stage4 Button
+  m_Name: Stage5 Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14241,7 +14221,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2003548267}
   m_OnClick:
     m_PersistentCalls:
@@ -14398,7 +14378,7 @@ GameObject:
   - component: {fileID: 2006317994}
   - component: {fileID: 2006317993}
   m_Layer: 5
-  m_Name: Stage4 Button
+  m_Name: Stage7 Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14828,6 +14808,7 @@ MonoBehaviour:
   - "\uC5B4\uB4601"
   - "\uC5B4\uB4602"
   - "\uC5B4\uB4603"
+  stageBool: 0100000000000000
 --- !u!114 &2027834203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15342,3 +15323,4 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 134984583}
   - {fileID: 462502214}
+  - {fileID: 24198694}
