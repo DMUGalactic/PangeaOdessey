@@ -937,8 +937,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentItem: {fileID: 0}
   image: {fileID: 50320507}
-  equipmentdb: {fileID: 0}
-  slotIndex: 0
 --- !u!114 &50320505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2030,8 +2028,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentItem: {fileID: 0}
   image: {fileID: 146220959}
-  equipmentdb: {fileID: 0}
-  slotIndex: 0
 --- !u!114 &146220957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2812,8 +2808,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentItem: {fileID: 0}
   image: {fileID: 196632636}
-  equipmentdb: {fileID: 0}
-  slotIndex: 0
 --- !u!114 &196632634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4361,7 +4355,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &352685099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7516,8 +7510,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentItem: {fileID: 0}
   image: {fileID: 641841973}
-  equipmentdb: {fileID: 0}
-  slotIndex: 0
 --- !u!114 &641841971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8679,8 +8671,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentItem: {fileID: 0}
   image: {fileID: 805276028}
-  equipmentdb: {fileID: 0}
-  slotIndex: 0
 --- !u!114 &805276026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11212,8 +11202,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentItem: {fileID: 0}
   image: {fileID: 957819351}
-  equipmentdb: {fileID: 0}
-  slotIndex: 0
 --- !u!114 &957819349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12280,8 +12268,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentItem: {fileID: 0}
   image: {fileID: 1055308893}
-  equipmentdb: {fileID: 0}
-  slotIndex: 0
 --- !u!114 &1055308891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15684,8 +15670,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentItem: {fileID: 0}
   image: {fileID: 1374729565}
-  equipmentdb: {fileID: 0}
-  slotIndex: 0
 --- !u!114 &1374729563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19787,8 +19771,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentItem: {fileID: 0}
   image: {fileID: 1730848057}
-  equipmentdb: {fileID: 0}
-  slotIndex: 0
 --- !u!114 &1730848055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19982,8 +19964,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentItem: {fileID: 0}
   image: {fileID: 1776268040}
-  equipmentdb: {fileID: 0}
-  slotIndex: 0
 --- !u!114 &1776268038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20271,8 +20251,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentItem: {fileID: 0}
   image: {fileID: 1814831339}
-  equipmentdb: {fileID: 0}
-  slotIndex: 0
 --- !u!114 &1814831337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20623,8 +20601,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentItem: {fileID: 0}
   image: {fileID: 1843980492}
-  equipmentdb: {fileID: 0}
-  slotIndex: 0
 --- !u!114 &1843980490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22072,7 +22048,7 @@ GameObject:
   - component: {fileID: 1992482044}
   - component: {fileID: 1992482047}
   - component: {fileID: 1992482046}
-  - component: {fileID: 1992482045}
+  - component: {fileID: 1992482048}
   m_Layer: 5
   m_Name: InVenTory
   m_TagString: Untagged
@@ -22104,46 +22080,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1891, y: 986}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1992482045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1992482043}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9acfacfab2ea7e74984b0931d9e00c75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  items:
-  - {fileID: 11400000, guid: 04bc027470eae174a82fd1bb68b781c4, type: 2}
-  - {fileID: 11400000, guid: 62dabe4b31c9d2548b9b9833b87a6621, type: 2}
-  - {fileID: 11400000, guid: 6434539f6fbf88b44862508ab8860c9c, type: 2}
-  - {fileID: 11400000, guid: a991eca3c4f78784ca794bd49b66a0f2, type: 2}
-  - {fileID: 11400000, guid: c0bc59b0629004742a5bfe82394518d1, type: 2}
-  - {fileID: 11400000, guid: 9f30c4a128db24e40b5446eb6b322b07, type: 2}
-  - {fileID: 11400000, guid: f3f56ac68cdd95c4ba92a35f2b3fd663, type: 2}
-  - {fileID: 11400000, guid: 69ed315279d7d644c875a54a13758b63, type: 2}
-  - {fileID: 11400000, guid: 27ee53d443c3e5d439f8eea794254de9, type: 2}
-  - {fileID: 11400000, guid: 27ee53d443c3e5d439f8eea794254de9, type: 2}
-  - {fileID: 11400000, guid: 27ee53d443c3e5d439f8eea794254de9, type: 2}
-  - {fileID: 11400000, guid: 27ee53d443c3e5d439f8eea794254de9, type: 2}
-  slotParent: {fileID: 944345398}
-  slots:
-  - {fileID: 50320504}
-  - {fileID: 1055308890}
-  - {fileID: 1374729562}
-  - {fileID: 1730848054}
-  - {fileID: 1814831336}
-  - {fileID: 805276025}
-  - {fileID: 641841970}
-  - {fileID: 1776268037}
-  - {fileID: 196632633}
-  - {fileID: 1843980489}
-  - {fileID: 957819348}
-  - {fileID: 146220956}
-  equipmentdb: {fileID: 11400000, guid: d8eada46e2c668e4bb1fe156c4f7297a, type: 2}
 --- !u!114 &1992482046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22182,6 +22118,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1992482043}
   m_CullTransparentMesh: 1
+--- !u!114 &1992482048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992482043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9acfacfab2ea7e74984b0931d9e00c75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - {fileID: 11400000, guid: 9f30c4a128db24e40b5446eb6b322b07, type: 2}
+  - {fileID: 11400000, guid: c0bc59b0629004742a5bfe82394518d1, type: 2}
+  - {fileID: 11400000, guid: f3f56ac68cdd95c4ba92a35f2b3fd663, type: 2}
+  - {fileID: 11400000, guid: 69ed315279d7d644c875a54a13758b63, type: 2}
+  slotParent: {fileID: 944345398}
+  slots:
+  - {fileID: 50320504}
+  - {fileID: 1055308890}
+  - {fileID: 1374729562}
+  - {fileID: 1730848054}
+  - {fileID: 1814831336}
+  - {fileID: 805276025}
+  - {fileID: 641841970}
+  - {fileID: 1776268037}
+  - {fileID: 196632633}
+  - {fileID: 1843980489}
+  - {fileID: 957819348}
+  - {fileID: 146220956}
 --- !u!1 &1997268990
 GameObject:
   m_ObjectHideFlags: 0
