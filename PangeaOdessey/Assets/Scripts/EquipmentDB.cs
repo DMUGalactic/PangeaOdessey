@@ -4,8 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Equipment Info", menuName = "Scriptable Object Asset/EquipmentInfo")]
 public class EquipmentDB : ScriptableObject
 {
-    public string[] inventory = new string[12];
+    public int[] inventory = new int[12];
 
-    public string[] equipment = new string[4];
-
+    public int[] equipment = new int[4];
 }

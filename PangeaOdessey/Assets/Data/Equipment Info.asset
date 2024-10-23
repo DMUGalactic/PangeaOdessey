@@ -12,15 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9ec38a0503ce2e4396f5ee6d75621e8, type: 3}
   m_Name: Equipment Info
   m_EditorClassIdentifier: 
-  item:
-  - 0
-  - 1
-  - 2
-  - 3
-  - 4
-  - 5
-  - 6
-  - 7
-  - 8
-  - 9
-  - 10
+  inventory: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  equipment: 00000000000000000000000000000000

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c00604be3153f74083e558e37b96c30, type: 3}
   m_Name: Bronze Shoes
   m_EditorClassIdentifier: 
-  itemID: 3
+  itemID: 4
   itemName: Bronze Shoes
   itemImage: {fileID: 21300000, guid: 2b7e7ffb63086b447be1fa92200403a4, type: 3}
   equipmentType: 0

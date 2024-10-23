@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c00604be3153f74083e558e37b96c30, type: 3}
   m_Name: Gold Shoes
   m_EditorClassIdentifier: 
-  itemID: 10
+  itemID: 11
   itemName: Gold Shoes
   itemImage: {fileID: 21300000, guid: aa86ecde306fd9b46a6b55f1cf13ca25, type: 3}
   equipmentType: 3

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c00604be3153f74083e558e37b96c30, type: 3}
   m_Name: Gold Head
   m_EditorClassIdentifier: 
-  itemID: 8
+  itemID: 9
   itemName: Gold Head
   itemImage: {fileID: 21300000, guid: fdcc6d1d950a969489f906ffa7cf8ff5, type: 3}
   equipmentType: 0

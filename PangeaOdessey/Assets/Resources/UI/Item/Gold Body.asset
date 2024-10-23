@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c00604be3153f74083e558e37b96c30, type: 3}
   m_Name: Gold Body
   m_EditorClassIdentifier: 
-  itemID: 10
+  itemID: 11
   itemName: Gold Body
   itemImage: {fileID: 21300000, guid: 0f4ab0a274876194eaf234a982359dce, type: 3}
   equipmentType: 1
