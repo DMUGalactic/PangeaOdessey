@@ -8,13 +8,10 @@ public class IInventory : MonoBehaviour
     [SerializeField]
     private Transform slotParent;
     [SerializeField]
-    public Slot[] slots;
-
-    [SerializeField] // 인스펙터에서 equipmentdb를 수정 가능하도록 설정
-    public EquipmentDB equipmentdb;
+    private Slot[] slots;
 
 #if UNITY_EDITOR
-    private void OnValidate()
+    private void OnValidate() 
     {
         slots = slotParent.GetComponentsInChildren<Slot>();
     }
@@ -22,9 +19,7 @@ public class IInventory : MonoBehaviour
 
     void Awake()
     {
-
         FreshSlot();
-
     }
 
     public void FreshSlot()
@@ -42,17 +37,6 @@ public class IInventory : MonoBehaviour
         for (; i < slots.Length; i++)
         {
             slots[i].item = null;
-        }
-    }
-
-
-    private void Update()
-    {
-        int i = 0;
-        for(; i<12; i++)
-        {
-            items[i].itemID = equipmentdb.inventory[i];
-            slots[i].item = items[i];
         }
     }
 }

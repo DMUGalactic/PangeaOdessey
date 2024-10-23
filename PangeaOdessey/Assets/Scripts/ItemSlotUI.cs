@@ -13,8 +13,8 @@ public class ItemSlotUI : BaseSlotUI
        {
            if (droppedItem.currentSlot is EquipmentSlotUI equipmentSlot)
            {
-               EquipmentManager.Instance.UnequipItem(equipmentSlot.slotName);
-               Debug.Log($"장비 해제 (인벤토리로 이동): {droppedItem.item.itemName}");
+               EquipmentManager.Instance.UnequipItem(equipmentSlot.slotID);
+               Debug.Log($"장비 해제 (인벤토리로 이동): 아이템 ID {droppedItem.item.itemID}");
            }
 
            SwapItems(droppedItem);
