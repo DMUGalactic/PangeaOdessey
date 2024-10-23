@@ -31,6 +31,7 @@ public class EquipmentSlotUI : BaseSlotUI
             }
         }
     }
+
     public void UpdateStatPanel(Item item)
     {
         var totalStats = EquipmentManager.Instance.GetTotalStats();

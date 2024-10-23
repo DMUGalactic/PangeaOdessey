@@ -13,7 +13,7 @@ public class EquipmentManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            Debug.Log("EquipmentManager ¿ŒΩ∫≈œΩ∫∞° √ ±‚»≠µ«æ˙Ω¿¥œ¥Ÿ.");
+            Debug.Log("EquipmentManager Ïù∏Ïä§ÌÑ¥Ïä§Í∞Ä Ï¥àÍ∏∞ÌôîÎêòÏóàÏäµÎãàÎã§.");
         }
         else
         {
@@ -23,15 +23,9 @@ public class EquipmentManager : MonoBehaviour
 
     public void EquipItem(string slotName, Item item)
     {
-        if (equippedItems.ContainsKey(slotName))
-        {
-            equippedItems[slotName] = item;
-        }
-        else
-        {
-            equippedItems.Add(slotName, item);
-        }
-        Debug.Log($"æ∆¿Ã≈€ ¿Â¬¯: ΩΩ∑‘ {slotName}, æ∆¿Ã≈€ {item.name}");
+        // Replace or add the item in the specified slot
+        equippedItems[slotName] = item;
+        Debug.Log($"ÏïÑÏù¥ÌÖú Ïû•Ï∞©: Ïä¨Î°Ø {slotName}, ÏïÑÏù¥ÌÖú {item.name}");
         UpdateAllEquipmentSlots();
     }
 
@@ -40,29 +34,38 @@ public class EquipmentManager : MonoBehaviour
         if (equippedItems.ContainsKey(slotName))
         {
             equippedItems.Remove(slotName);
-            Debug.Log($"æ∆¿Ã≈€ «ÿ¡¶: ΩΩ∑‘ {slotName}");
+            Debug.Log($"ÏïÑÏù¥ÌÖú Ï†úÍ±∞: Ïä¨Î°Ø {slotName}");
         }
         UpdateAllEquipmentSlots();
     }
 
     public (int hp, float damage, float speed) GetTotalStats()
-    {
-        int totalHp = 0;
-        float totalDamage = 0f;
-        float totalSpeed = 0f;
+{
+    int totalHp = 0;
+    float totalDamage = 0f;
+    float totalSpeed = 0f;
 
-        foreach (var item in equippedItems.Values)
+    foreach (var item in equippedItems.Values)
+    {
+        totalHp += item.Hp;
+
+        // Adjust calculation to ensure no negative percentages
+        if (item.Damage > 1)
         {
-            totalHp += item.Hp;
-            totalDamage += item.Damage;
-            totalSpeed += item.Speed;
-            Debug.Log($"æ∆¿Ã≈€ Ω∫≈» - ¿Ã∏ß: {item.name}, HP: {item.Hp}, Damage: {item.Damage}, Speed: {item.Speed}");
+            totalDamage += (item.Damage - 1) * 100;
         }
 
-        Debug.Log($"√—«’ Ω∫≈» - HP: {totalHp}, Damage: {totalDamage}, Speed: {totalSpeed}");
-        return (totalHp, totalDamage, totalSpeed);
+        if (item.Speed > 1)
+        {
+            totalSpeed += (item.Speed - 1) * 100;
+        }
+
+        Debug.Log($"ÏïÑÏù¥ÌÖú Ï†ïÎ≥¥ - Ïù¥Î¶Ñ: {item.name}, HP: {item.Hp}, Damage: {(item.Damage > 1 ? (item.Damage - 1) * 100 : 0)}%, Speed: {(item.Speed > 1 ? (item.Speed - 1) * 100 : 0)}%");
     }
 
+    Debug.Log($"Ï¥ùÌï© Ïä§ÌÉØ - HP: {totalHp}, Damage: {totalDamage}%, Speed: {totalSpeed}%");
+    return (totalHp, totalDamage, totalSpeed);
+}
     private void UpdateAllEquipmentSlots()
     {
         EquipmentSlotUI[] equipmentSlots = FindObjectsOfType<EquipmentSlotUI>();
