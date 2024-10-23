@@ -1637,6 +1637,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1196982837}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: StageClear
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1007783378}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -12378,6 +12390,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 96175885}
     - target: {fileID: 5854243245224599532, guid: 35279fccab05f934daa29f87664d02f7, type: 3}
+      propertyPath: stageData
+      value: 
+      objectReference: {fileID: 11400000, guid: f8a1f1d3c42c2c04192af067eba4b9e5, type: 2}
+    - target: {fileID: 5854243245224599532, guid: 35279fccab05f934daa29f87664d02f7, type: 3}
       propertyPath: bossHealth
       value: 300
       objectReference: {fileID: 0}
@@ -12957,6 +12973,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194041580}
   m_CullTransparentMesh: 1
+--- !u!114 &1196982837 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5854243245224599532, guid: 35279fccab05f934daa29f87664d02f7, type: 3}
+  m_PrefabInstance: {fileID: 1077794506}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b75dd7fe76954d744bf3b4a6bd4889e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1222475680
 GameObject:
   m_ObjectHideFlags: 0

@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour
         // 필요 시 보스가 죽었을 때 로직 추가
         if (bossHealth <= 0)
         {
-            Invoke("BossDead", 10f);
+            Invoke("BossDead", 1.03f);
         }
     }
 
