@@ -3071,6 +3071,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1706819618}
   - {fileID: 492830974}
   - {fileID: 1064074225}
   - {fileID: 1209454277}
@@ -3083,7 +3084,6 @@ RectTransform:
   - {fileID: 906930717}
   - {fileID: 1985209526}
   - {fileID: 2101866128}
-  - {fileID: 1706819618}
   - {fileID: 1165016495}
   - {fileID: 1431030425}
   - {fileID: 1114329353}
@@ -4436,7 +4436,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetImage: {fileID: 839796238}
   targetText: {fileID: 118061469}
-  customText: "\uBE0C\uB860\uC988 \uD5EC\uBA67 HP+1"
+  customText: "\uAC00\uC8FD \uAC11\uC637 HP+2"
 --- !u!114 &408460877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8367,7 +8367,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &774284344
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9908,7 +9908,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetImage: {fileID: 839796238}
   targetText: {fileID: 118061469}
-  customText: "\uBE0C\uB860\uC988 \uD5EC\uBA67 HP+1"
+  customText: "\uAC00\uC8FD \uC7A5\uAC11 Damage + 10%"
 --- !u!114 &867572215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10433,7 +10433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetImage: {fileID: 839796238}
   targetText: {fileID: 118061469}
-  customText: 
+  customText: "\uCCA0 \uD5EC\uBA67 HP + 2"
 --- !u!114 &906930719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11009,7 +11009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetImage: {fileID: 839796238}
   targetText: {fileID: 118061469}
-  customText: 
+  customText: "\uD669\uAE08 \uC2E0\uBC1C Speed + 30%"
 --- !u!114 &950213115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12895,7 +12895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetImage: {fileID: 839796238}
   targetText: {fileID: 118061469}
-  customText: 
+  customText: "\uD669\uAE08 \uC7A5\uAC11 Damage + 30%"
 --- !u!114 &1114329355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13771,7 +13771,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetImage: {fileID: 839796238}
   targetText: {fileID: 118061469}
-  customText: 
+  customText: "\uD669\uAE08 \uD5EC\uBA67 HP+3"
 --- !u!114 &1165016497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15996,7 +15996,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetImage: {fileID: 839796238}
   targetText: {fileID: 118061469}
-  customText: 
+  customText: "\uD669\uAE08 \uAC11\uC637 HP+6"
 --- !u!114 &1431030427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17951,7 +17951,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetImage: {fileID: 839796238}
   targetText: {fileID: 118061469}
-  customText: "\uBE0C\uB860\uC988 \uD5EC\uBA67 HP+1"
+  customText: "\uAC00\uC8FD \uD5EC\uBA67 HP+1"
 --- !u!114 &1531287834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19578,7 +19578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetImage: {fileID: 839796238}
   targetText: {fileID: 118061469}
-  customText: 
+  customText: "\uCCA0 \uC2E0\uBC1C Speed + 20%"
 --- !u!114 &1706819620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21157,7 +21157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetImage: {fileID: 839796238}
   targetText: {fileID: 118061469}
-  customText: "\uBE0C\uB860\uC988 \uD5EC\uBA67 HP+1"
+  customText: "\uAC00\uC8FD \uC2E0\uBC1C Speed + 10%"
 --- !u!114 &1900526238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21898,7 +21898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetImage: {fileID: 839796238}
   targetText: {fileID: 118061469}
-  customText: 
+  customText: "\uCCA0 \uAC11\uC637 HP+4"
 --- !u!114 &1985209528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23488,7 +23488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetImage: {fileID: 839796238}
   targetText: {fileID: 118061469}
-  customText: 
+  customText: "\uCCA0 \uC7A5\uAC11 Damage + 20%"
 --- !u!114 &2101866130
 MonoBehaviour:
   m_ObjectHideFlags: 0
