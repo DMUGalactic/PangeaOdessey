@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class EquipmentManager : MonoBehaviour
 {
+
+    // ì‹±ê¸€í†¤ ì¸ìŠ¤í„´ìŠ¤
+
     public static EquipmentManager Instance { get; private set; }
 
     private Dictionary<string, Item> equippedItems = new Dictionary<string, Item>();
@@ -13,7 +16,7 @@ public class EquipmentManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            Debug.Log("EquipmentManager ÀÎ½ºÅÏ½º°¡ ÃÊ±âÈ­µÇ¾ú½À´Ï´Ù.");
+            Debug.Log("EquipmentManager ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
         }
         else
         {
@@ -31,7 +34,7 @@ public class EquipmentManager : MonoBehaviour
         {
             equippedItems.Add(slotName, item);
         }
-        Debug.Log($"¾ÆÀÌÅÛ ÀåÂø: ½½·Ô {slotName}, ¾ÆÀÌÅÛ {item.name}");
+        Debug.Log($"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ {slotName}, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ {item.name}");
         UpdateAllEquipmentSlots();
     }
 
@@ -40,7 +43,7 @@ public class EquipmentManager : MonoBehaviour
         if (equippedItems.ContainsKey(slotName))
         {
             equippedItems.Remove(slotName);
-            Debug.Log($"¾ÆÀÌÅÛ ÇØÁ¦: ½½·Ô {slotName}");
+            Debug.Log($"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ {slotName}");
         }
         UpdateAllEquipmentSlots();
     }
@@ -56,10 +59,10 @@ public class EquipmentManager : MonoBehaviour
             totalHp += item.Hp;
             totalDamage += item.Damage;
             totalSpeed += item.Speed;
-            Debug.Log($"¾ÆÀÌÅÛ ½ºÅÈ - ÀÌ¸§: {item.name}, HP: {item.Hp}, Damage: {item.Damage}, Speed: {item.Speed}");
+            Debug.Log($"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ - ï¿½Ì¸ï¿½: {item.name}, HP: {item.Hp}, Damage: {item.Damage}, Speed: {item.Speed}");
         }
 
-        Debug.Log($"ÃÑÇÕ ½ºÅÈ - HP: {totalHp}, Damage: {totalDamage}, Speed: {totalSpeed}");
+        Debug.Log($"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ - HP: {totalHp}, Damage: {totalDamage}, Speed: {totalSpeed}");
         return (totalHp, totalDamage, totalSpeed);
     }
 
