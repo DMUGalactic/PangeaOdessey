@@ -8,7 +8,9 @@ public class IInventory : MonoBehaviour
     [SerializeField]
     private Transform slotParent;
     [SerializeField]
-    private Slot[] slots;
+    public Slot[] slots;
+
+    [SerializeField] // 인스펙터에서 equipmentdb를 수정 가능하도록 설정
     public EquipmentDB equipmentdb;
 
 #if UNITY_EDITOR
@@ -20,7 +22,9 @@ public class IInventory : MonoBehaviour
 
     void Awake()
     {
+
         FreshSlot();
+
     }
 
     public void FreshSlot()
@@ -41,21 +45,14 @@ public class IInventory : MonoBehaviour
         }
     }
 
+
     private void Update()
     {
-        if (equipmentdb != null && equipmentdb.inventory != null)
+        int i = 0;
+        for(; i<12; i++)
         {
-            // items 리스트를 inventory 배열에 복사
-            for (int i = 0; i < equipmentdb.inventory.Length && i < items.Count; i++)
-            {
-                equipmentdb.inventory[i] = items[i];
-            }
-
-            // 남는 슬롯을 null로 채우기
-            for (int i = items.Count; i < equipmentdb.inventory.Length; i++)
-            {
-                equipmentdb.inventory[i] = null;
-            }
+            items[i].itemID = equipmentdb.inventory[i];
+            slots[i].item = items[i];
         }
     }
 }
