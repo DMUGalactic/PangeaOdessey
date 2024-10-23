@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c00604be3153f74083e558e37b96c30, type: 3}
   m_Name: Sliver Body
   m_EditorClassIdentifier: 
+  itemID: 5
   itemName: Sliver Body
   itemImage: {fileID: 21300000, guid: 0f2f8386e4b60984d9ab46b3388d3309, type: 3}
   equipmentType: 1

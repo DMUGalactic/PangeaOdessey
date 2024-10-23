@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c00604be3153f74083e558e37b96c30, type: 3}
   m_Name: Bronze Body
   m_EditorClassIdentifier: 
+  itemID: 1
   itemName: Bronze Body
   itemImage: {fileID: 21300000, guid: 3c8b83ed9937ecb4c8fc0780411f59f7, type: 3}
   equipmentType: 1

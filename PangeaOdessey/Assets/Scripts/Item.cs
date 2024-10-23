@@ -11,6 +11,7 @@ public enum EquipmentType
 [CreateAssetMenu(menuName = "Inventory/Item")]
 public class Item : ScriptableObject
 {
+    public int itemID;
     public string itemName;
     public Sprite itemImage;
     public EquipmentType equipmentType;
