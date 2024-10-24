@@ -17,7 +17,8 @@ public class Enemy : MonoBehaviour
     public LayerMask playerLayer;
     public float detectionRadius = 5f;
     public AudioSource audioSource; // AudioSource ������Ʈ �߰�
-
+    public GameObject mission;
+    
     bool isLive;
     Rigidbody2D rigid;
     SpriteRenderer spriter;
@@ -140,7 +141,14 @@ public class Enemy : MonoBehaviour
         Instantiate(itemPrefab, transform.position, Quaternion.identity);
     }
     void Dead()
-    {
+    {           
+        mission = GameObject.Find("Mission");//kssAppend
+        if(mission != null){
+            if(mission.activeInHierarchy)
+            {   
+                MissionManager.killCount ++;
+            }
+        }//kssAppend
         gameObject.SetActive(false);
     }
 }

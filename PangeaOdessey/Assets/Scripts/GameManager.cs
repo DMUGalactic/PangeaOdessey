@@ -19,6 +19,12 @@ public class GameManager : MonoBehaviour
     public float bossSpawnTime = 20f; // 보스 스폰 시간
     public int kill;
 
+    [Header("# Mission Info")]//kssAppend
+    private bool pentagramSpawned = false;
+    public float pentagramSpawnTime;
+    public GameObject Pentagram;
+    public GameObject PentagramDirector;
+
     [Header(" Game Object")]
     public PoolManager pool;
     public Player player;
@@ -70,6 +76,11 @@ public class GameManager : MonoBehaviour
             SpawnBoss();
         }
 
+        if (gameTime > pentagramSpawnTime && !pentagramSpawned)//kssAppend
+        {
+            SpawnPentaGram();
+        }
+
         if (gameTime < maxGameTime)
         {
             // 게임 오버 로직을 여기에 추가합니다.
@@ -111,6 +122,16 @@ public class GameManager : MonoBehaviour
         }
 
         bossSpawned = true; // 보스를 한 번만 스폰되도록 설정
+    }
+
+        void SpawnPentaGram()//kssAppend
+    {
+        Vector2 spawnPosition = (Vector2)player.transform.position + UnityEngine.Random.insideUnitCircle * spawnRadius * 10;  
+        Pentagram.transform.position = spawnPosition;
+        Pentagram.SetActive(true);        
+        PentagramDirector.SetActive(true);        
+        GetComponent<AudioSource>().Play();
+        pentagramSpawned = true;
     }
 
     public void TakeDamage(float amount)
