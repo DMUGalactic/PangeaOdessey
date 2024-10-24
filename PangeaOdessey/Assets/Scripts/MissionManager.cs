@@ -61,7 +61,7 @@ public class MissionManager : MonoBehaviour
                 missionProgressText.text = "몬스터 처치: " + missionProgress + " / 100";
                 break;
         }
-        if (missionProgress >= 10 && !checkCleared)//test
+        if (missionProgress >= 100 && !checkCleared)
         {
             checkCleared = true;
             GetComponent<AudioSource>().Play();
