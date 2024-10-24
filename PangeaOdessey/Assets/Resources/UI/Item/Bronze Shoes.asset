@@ -15,7 +15,7 @@ MonoBehaviour:
   itemID: 4
   itemName: Bronze Shoes
   itemImage: {fileID: 21300000, guid: 2b7e7ffb63086b447be1fa92200403a4, type: 3}
-  equipmentType: 0
+  equipmentType: 3
   Hp: 0
   Damage: 0
   Speed: 3

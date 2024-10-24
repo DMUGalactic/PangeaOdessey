@@ -22143,6 +22143,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9f30c4a128db24e40b5446eb6b322b07, type: 2}
   - {fileID: 11400000, guid: f3f56ac68cdd95c4ba92a35f2b3fd663, type: 2}
   - {fileID: 11400000, guid: 69ed315279d7d644c875a54a13758b63, type: 2}
+  selectedItems: []
   slotParent: {fileID: 944345398}
   slots:
   - {fileID: 50320504}

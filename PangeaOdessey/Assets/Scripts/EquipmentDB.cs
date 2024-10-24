@@ -1,16 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// EquipmentDB ìŠ¤í¬ë¦½í„°ë¸” ì˜¤ë¸Œì íŠ¸ ìƒì„± ë©”ë‰´ ë“±ë¡
 [CreateAssetMenu(fileName = "EquipmentDB", menuName = "Scriptable Object Asset/EquipmentDB")]
 public class EquipmentDB : ScriptableObject
 {
-    public int[] inventory = new int[12]; // ¾ÆÀÌÅÛ ID¸¦ ÀúÀåÇÏ´Â ÀÎº¥Åä¸® ¹è¿­
-    public List<Item> items; // ¾ÆÀÌÅÛ ¸®½ºÆ®
+    public int[] inventory = new int[12]; // ì¸ë²¤í† ë¦¬ IDë¥¼ ì €ì¥í•˜ëŠ” ë°°ì—´ (ìµœëŒ€ 12ê°œì˜ ì•„ì´í…œ ID)
+    public List<Item> items; // ì•„ì´í…œ ëª©ë¡
 
-    // ¾ÆÀÌÅÛ ID¸¦ ÅëÇØ ItemÀ» ¹İÈ¯ÇÏ´Â ¸Ş¼­µå
+    // ì£¼ì–´ì§„ IDì— í•´ë‹¹í•˜ëŠ” Item ê°ì²´ë¥¼ ë°˜í™˜í•˜ëŠ” ë©”ì„œë“œ
     public Item GetItemById(int id)
     {
-        // ID¿¡ ÇØ´çÇÏ´Â ¾ÆÀÌÅÛÀ» Ã£¾Æ ¹İÈ¯ (ID°¡ À¯È¿ÇÏÁö ¾ÊÀ¸¸é null ¹İÈ¯)
+        // IDì— í•´ë‹¹í•˜ëŠ” ì•„ì´í…œì„ ëª©ë¡ì—ì„œ ì°¾ì•„ì„œ ë°˜í™˜ (IDê°€ ìœ íš¨í•˜ì§€ ì•Šìœ¼ë©´ null ë°˜í™˜)
         return items.Find(item => item.itemID == id);
     }
 }
