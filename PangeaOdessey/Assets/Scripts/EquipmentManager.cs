@@ -29,7 +29,7 @@ public class EquipmentManager : MonoBehaviour
 
     private void Start()
     {
-        ItemDatabase.Initialize(itemDatabase); // itemDatabase를 통해 초기화
+        itemDatabase.Initialize(); // itemDatabase 초기화
         LoadEquippedItems(); // 장착된 아이템 불러오기
     }
 
@@ -42,7 +42,7 @@ public class EquipmentManager : MonoBehaviour
         SaveEquippedItems(); // 장착할 때마다 저장
     }
 
-    // 아이템을 해제하는 메서드 (slotID 사용)
+    // 아이템을 해제하는 메서드
     public void UnequipItem(int slotID)
     {
         if (equippedItems.ContainsKey(slotID)) // 슬롯에 장착된 아이템이 있는 경우
@@ -96,10 +96,12 @@ public class EquipmentManager : MonoBehaviour
             if (equippedItems.TryGetValue(slot.slotID, out Item item)) // 슬롯에 장착된 아이템이 있는 경우
             {
                 slot.UpdateStatPanel(item); // 아이템 정보를 업데이트
+                slot.SetItemImage(item.itemImage); // 아이템 이미지 설정
             }
             else
             {
                 slot.UpdateStatPanel(null); // 장착된 아이템이 없을 경우 null로 업데이트
+                slot.SetItemImage(null); // 이미지 초기화
             }
         }
     }
@@ -116,36 +118,36 @@ public class EquipmentManager : MonoBehaviour
     }
 
     // 게임 시작 시 장착된 아이템을 불러오는 메서드
-    // 게임 시작 시 장착된 아이템을 불러오는 메서드
-public void LoadEquippedItems()
-{
-    for (int slotID = 5; slotID <= 8; slotID++) // 5부터 8까지 반복
+    public void LoadEquippedItems()
     {
-        if (PlayerPrefs.HasKey($"EquippedItem_{slotID}")) // 해당 슬롯에 저장된 아이템이 있는 경우
+        for (int slotID = 5; slotID <= 8; slotID++) // 5부터 8까지 반복
         {
-            int itemID = PlayerPrefs.GetInt($"EquippedItem_{slotID}"); // 아이템 ID 불러오기
-            Item item = FindItemByID(itemID); // 아이템 ID로 아이템을 찾는 메서드
-            if (item != null) // 아이템이 존재하는 경우
+            if (PlayerPrefs.HasKey($"EquippedItem_{slotID}")) // 해당 슬롯에 저장된 아이템이 있는 경우
             {
-                EquipItem(slotID, item); // 아이템 장착
-                Debug.Log($"슬롯 ID {slotID}에 아이템 {item.itemName}이(가) 불러와졌습니다.");
+                int itemID = PlayerPrefs.GetInt($"EquippedItem_{slotID}"); // 아이템 ID 불러오기
+                Item item = FindItemByID(itemID); // 아이템 ID로 아이템을 찾는 메서드
+                if (item != null) // 아이템이 존재하는 경우
+                {
+                    EquipItem(slotID, item); // 아이템 장착
+                    Debug.Log($"슬롯 ID {slotID}에 아이템 {item.itemName}이(가) 불러와졌습니다.");
+                }
+                else
+                {
+                    Debug.LogWarning($"슬롯 ID {slotID}에 불러올 아이템이 없습니다. 아이템 ID: {itemID}");
+                }
             }
             else
             {
-                Debug.LogWarning($"슬롯 ID {slotID}에 불러올 아이템이 없습니다. 아이템 ID: {itemID}");
+                Debug.Log($"슬롯 ID {slotID}에 장착된 아이템이 없습니다.");
             }
         }
-        else
-        {
-            Debug.Log($"슬롯 ID {slotID}에 장착된 아이템이 없습니다.");
-        }
+        UpdateAllEquipmentSlots(); // 장착된 아이템을 UI에 반영
     }
-}
 
     // 아이템 ID로 아이템을 찾는 메서드
     private Item FindItemByID(int itemID)
     {
-        return ItemDatabase.Instance.GetItemByID(itemID); // 아이템 데이터베이스에서 아이템 찾기
+        return itemDatabase.GetItemByID(itemID); // 아이템 데이터베이스에서 아이템 찾기
     }
 
     // 플레이어 데이터 초기화 메서드
@@ -177,5 +179,15 @@ public void LoadEquippedItems()
     {
         equippedItems.TryGetValue(slotID, out Item item); // 슬롯 ID로 아이템 검색
         return item; // 아이템 반환
+    }
+
+    public Item GetItemByID(int itemID)
+    {
+        // 아이템을 ID로 검색
+        if (itemDatabase.TryGetValue(itemID, out Item item))
+        {
+            return item;
+        }
+        return null; // 아이템이 없으면 null 반환
     }
 }
