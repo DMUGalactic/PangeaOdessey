@@ -41,17 +41,24 @@ public class Player : MonoBehaviour
     }
 
     void FixedUpdate()
+{
+    speed = 3;
+    float totalSpeed = EquipmentManager.Instance.GetTotalStats().speed;
+
+    // totalSpeed가 0보다 크면, 퍼센트로 변환 (예: totalSpeed가 30이면 30%는 0.3)
+    float speedMultiplier = totalSpeed > 0 ? (1 + totalSpeed / 100) : 1; // 기본 속도에 퍼센트로 추가
+    adjustedSpeed = speed * speedMultiplier; // 기본 속도에 추가 속도를 더함
+
+    // 아이템 미장착 시 속도를 3으로 고정
+    if (adjustedSpeed == 0)
     {
-        speed = 3;
-        float totalSpeed = EquipmentManager.Instance.GetTotalStats().speed;
-        adjustedSpeed = speed * totalSpeed; // 기본 속도에 추가 속도를 더함
-        if (adjustedSpeed == 0) //아이템 미장착시 속도를 3으로 고정
-        {
-            adjustedSpeed = 3;
-        }
-        Vector2 nextVec = inputVec.normalized * adjustedSpeed * Time.fixedDeltaTime;
-        rigid.MovePosition(rigid.position + nextVec);
+        adjustedSpeed = 3;
     }
+
+    Vector2 nextVec = inputVec.normalized * adjustedSpeed * Time.fixedDeltaTime;
+    rigid.MovePosition(rigid.position + nextVec);
+}
+
 
 
     void LateUpdate()

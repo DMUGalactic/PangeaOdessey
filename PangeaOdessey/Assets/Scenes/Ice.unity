@@ -410,7 +410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 4
   prefabId: 11
-  damage: 0.01
+  baseDamage: 10
   count: 0
   speed: 0
 --- !u!1 &48709321
@@ -8798,7 +8798,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   prefabId: 4
-  damage: 5
+  baseDamage: 5
   count: 7
   speed: 0
 --- !u!1 &364852065
@@ -8847,7 +8847,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   prefabId: 1
-  damage: 1
+  baseDamage: 0
   count: 3
   speed: 0
 --- !u!1 &375019288
@@ -10001,7 +10001,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   prefabId: 2
-  damage: 5
+  baseDamage: 3
   count: 5
   speed: 0
 --- !u!1 &629005374
@@ -10197,7 +10197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 3
   prefabId: 10
-  damage: 30
+  baseDamage: 10
   count: 5
   speed: 0
 --- !u!1 &714558909
@@ -10980,7 +10980,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   prefabId: 5
-  damage: 15
+  baseDamage: 15
   count: 7
   speed: 0
 --- !u!1001 &854368867
@@ -11989,7 +11989,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2
   prefabId: 9
-  damage: 7
+  baseDamage: 7
   count: 5
   speed: 0
 --- !u!1001 &968261610
@@ -12739,7 +12739,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   prefabId: 3
-  damage: 10
+  baseDamage: 5
   count: 7
   speed: 0
 --- !u!1 &1136434190
@@ -12788,7 +12788,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2
   prefabId: 8
-  damage: 5
+  baseDamage: 5
   count: 3
   speed: 0
 --- !u!1 &1139079969
@@ -14934,7 +14934,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   prefabId: 6
-  damage: 20
+  baseDamage: 20
   count: 7
   speed: 0
 --- !u!1 &1704139453
@@ -16399,7 +16399,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2
   prefabId: 7
-  damage: 3
+  baseDamage: 3
   count: 1
   speed: 0
 --- !u!1 &2004293970

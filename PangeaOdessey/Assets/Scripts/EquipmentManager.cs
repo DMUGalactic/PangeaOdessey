@@ -48,23 +48,41 @@ public class EquipmentManager : MonoBehaviour
         UpdateAllEquipmentSlots();
     }
 
-    public (int hp, float damage, float speed) GetTotalStats()
-    {
-        int totalHp = 0;
-        float totalDamage = 0f;
-        float totalSpeed = 0f;
+      public (int hp, float damage, float speed) GetTotalStats()
+{
+    int totalHp = 0;
+    float totalDamage = 0f;
+    float totalSpeed = 0f;
 
-        foreach (var item in equippedItems.Values)
+    foreach (var item in equippedItems.Values) // 장착된 아이템을 순회
+    {
+        totalHp += item.Hp; // HP 합산
+
+        // 데미지와 스피드는 1을 초과하는 경우에만 퍼센트로 변환하여 더함
+        if (item.Damage > 1)
         {
-            totalHp += item.Hp;
-            totalDamage += item.Damage;
-            totalSpeed += item.Speed;
-            Debug.Log($"������ ���� - �̸�: {item.name}, HP: {item.Hp}, Damage: {item.Damage}, Speed: {item.Speed}");
+            totalDamage += (item.Damage - 1) * 100; // 퍼센트 변환 후 합산
         }
 
-        Debug.Log($"���� ���� - HP: {totalHp}, Damage: {totalDamage}, Speed: {totalSpeed}");
-        return (totalHp, totalDamage, totalSpeed);
+        if (item.Speed > 1)
+        {
+            totalSpeed += (item.Speed - 1) * 100; // 퍼센트 변환 후 합산
+        }
+
+        // 각 아이템의 정보를 로그로 출력
+        Debug.Log($"아이템 정보 - 이름: {item.itemName}, HP: {item.Hp}, " +
+                  $"Damage: {(item.Damage > 1 ? (item.Damage - 1) * 100 : 0)}%, " +
+                  $"Speed: {(item.Speed > 1 ? (item.Speed - 1) * 100 : 0)}%");
     }
+
+    Debug.Log($"최종 스텟 - HP: {totalHp}, 추가된 Damage: {totalDamage}%, 추가된 Speed: {totalSpeed}%");
+    return (totalHp, totalDamage, totalSpeed);
+}
+
+
+
+
+
 
     private void UpdateAllEquipmentSlots()
     {

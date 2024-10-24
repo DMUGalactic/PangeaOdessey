@@ -6,14 +6,11 @@ public class Weapon : MonoBehaviour
 {
     public int id;
     public int prefabId;
-    [SerializeField] private float baseDamage; // Inspector¿¡¼­ ¼³Á¤ÇÒ ±âº» µ¥¹ÌÁö
-    private float damage; // ½ÇÁ¦·Î »ç¿ëÇÒ µ¥¹ÌÁö °ª
+    [SerializeField] private float baseDamage; // ë¬´ê¸°ì˜ ê¸°ë³¸ ë°ë¯¸ì§€
+    private float damage; // ìµœì¢… ë°ë¯¸ì§€
 
     public int count;
     public float speed;
-
-    float initialX = 1f;
-    float initialY = 0f;
 
     float savex;
     float savey;
@@ -25,46 +22,56 @@ public class Weapon : MonoBehaviour
     {
         player = GetComponentInParent<Player>();
 
-        // baseDamage·Î damage ÃÊ±âÈ­
-        damage = baseDamage;
-
-        if (EquipmentManager.Instance != null)
-        {
-            float equipmentDamage = EquipmentManager.Instance.GetTotalStats().damage;
-            // EquipmentManager¿¡¼­ °¡Á®¿Â Ãß°¡ µ¥¹ÌÁö¸¦ ´õÇÔ
-            damage *= equipmentDamage;
-            Debug.Log("EquipmentManager·ÎºÎÅÍ Ãß°¡µÈ µ¥¹ÌÁö: " + equipmentDamage);
-        }
-
-        Debug.Log("ÃÊ±âÈ­µÈ µ¥¹ÌÁö: " + damage);
+        // ë¬´ê¸° ì´ˆê¸°í™” ì‹œ ê¸°ë³¸ ë°ë¯¸ì§€ì™€ ì¥ë¹„ë¡œë¶€í„° ì–»ì€ ë°ë¯¸ì§€ë¥¼ í•©ì‚°
+        UpdateDamage();
     }
+
+    // ë¬´ê¸°ì˜ ë°ë¯¸ì§€ë¥¼ ì¥ë¹„ì— ë”°ë¼ ê°±ì‹ í•˜ëŠ” í•¨ìˆ˜
+    public void UpdateDamage()
+{
+    float equipmentDamagePercent = 0f; // ì¥ë¹„ì—ì„œ ì–»ëŠ” ë°ë¯¸ì§€ì˜ ë¹„ìœ¨ (í¼ì„¼íŠ¸)
+
+    if (EquipmentManager.Instance != null)
+    {
+        equipmentDamagePercent = EquipmentManager.Instance.GetTotalStats().damage; // ì˜ˆ: 10, 20, 30
+        Debug.Log("EquipmentManagerë¡œë¶€í„° ì¶”ê°€ëœ ê³µê²©ë ¥ ë¹„ìœ¨: " + equipmentDamagePercent + "%");
+    }
+
+    // equipmentDamagePercentê°€ í¼ì„¼íŠ¸ë¡œ ì œê³µëœë‹¤ê³  ê°€ì • (ì˜ˆ: 10ì´ë©´ 0.1)
+    float damageMultiplier = 1 + (equipmentDamagePercent / 100); // 1 + 0.1 => 1.1ê°€ ë˜ì–´ì•¼ í•¨
+
+    // ê¸°ë³¸ ë°ë¯¸ì§€ì— ì¥ë¹„ ë°ë¯¸ì§€ë¥¼ ê³±í•˜ì—¬ ìµœì¢… ë°ë¯¸ì§€ë¥¼ ê³„ì‚°
+    damage = baseDamage * damageMultiplier; // 1 * 1.1 = 1.1
+    Debug.Log("ê°±ì‹ ëœ ë°ë¯¸ì§€: " + damage);
+}
+
 
     void Start()
     {
         Init();
-        savex = initialX;
-        savey = initialY;
+        savex = 1f;
+        savey = 0f;
     }
 
     void Update()
     {
-        // ÇÃ·¹ÀÌ¾îÀÇ ¿òÁ÷ÀÓÀ» ÃøÁ¤ÇÕ´Ï´Ù.
+        // í”Œë ˆì´ì–´ì˜ ì›€ì§ì„ì— ë”°ë¼ ì¢Œí‘œ ê°±ì‹ 
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
-        // ÇÃ·¹ÀÌ¾î°¡ ¿òÁ÷ÀÌÁö ¾ÊÀ» ¶§´Â savex¿Í savey °ªÀ» ¾÷µ¥ÀÌÆ®ÇÏÁö ¾Ê½À´Ï´Ù.
         if (x != 0 || y != 0)
         {
             savex = x;
             savey = y;
         }
 
+        // ë¬´ê¸° ì¢…ë¥˜ì— ë”°ë¼ ë™ì‘ ì‹¤í–‰
         switch (id)
         {
             case 0:
                 transform.Rotate(Vector3.back * speed * Time.deltaTime);
                 break;
-            case 1: // µµ³¢ °ø°İ
+            case 1:
                 timer += Time.deltaTime;
                 if (timer > speed)
                 {
@@ -72,7 +79,7 @@ public class Weapon : MonoBehaviour
                     Axe();
                 }
                 break;
-            case 2: // È° °ø°İ
+            case 2:
                 timer += Time.deltaTime;
                 if (timer > speed)
                 {
@@ -80,7 +87,7 @@ public class Weapon : MonoBehaviour
                     Bow();
                 }
                 break;
-            case 3: // ÆÄÀÌ¾îº¼ °ø°İ
+            case 3:
                 timer += Time.deltaTime;
                 if (timer > speed)
                 {
@@ -89,7 +96,7 @@ public class Weapon : MonoBehaviour
                 }
                 break;
             case 4:
-                // Ãß°¡ ¹«±â ·ÎÁ÷ÀÌ ÇÊ¿äÇÏ¸é ¿©±â¿¡ ÀÛ¼º
+                // ì¶”ê°€ ë¬´ê¸° êµ¬í˜„ í•„ìš”
                 break;
             default:
                 break;
@@ -105,10 +112,10 @@ public class Weapon : MonoBehaviour
                 BatchShield();
                 break;
             case 1:
-                speed = 1f; // °ø°İ ¼Óµµ Á¶Á¤, ³·À»¼ö·Ï ºü¸§
+                speed = 1f; // ë¬´ê¸° ì†ë„
                 break;
             case 2:
-                speed = 1f; // °ø°İ ¼Óµµ Á¶Á¤, ³·À»¼ö·Ï ºü¸§
+                speed = 1f;
                 break;
             case 3:
                 speed = 1f;
@@ -121,7 +128,9 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    void BatchShield() // ¹æÆĞ ¹èÄ¡ÇÏ´Â ÇÔ¼ö
+
+
+    void BatchShield() // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
     {
         for (int index = 0; index < count; index++)
         {
@@ -134,11 +143,11 @@ public class Weapon : MonoBehaviour
             bullet.Rotate(rotVec);
             bullet.Translate(bullet.up * 2f, Space.World);
 
-            bullet.GetComponent<Bullet>().Init(damage, -1, Vector3.zero); // -1Àº °è¼Ó °üÅë
+            bullet.GetComponent<Bullet>().Init(damage, -1, Vector3.zero); // -1ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
     }
 
-    void Axe() // µµ³¢ ÇÔ¼ö
+    void Axe() // ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     {
         if (!player.scanner.nearestTarget)
             return;
@@ -153,13 +162,13 @@ public class Weapon : MonoBehaviour
         bullet.GetComponent<Bullet>().Init(damage, -2, dir);
     }
 
-    IEnumerator RotateAndMove(Transform target, Vector3 dir) // µµ³¢ È¸ÀüÇÏ¸ç ³¯¾Æ°¡´Â ÄÚ·çÆ¾
+    IEnumerator RotateAndMove(Transform target, Vector3 dir) // ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾
     {
-        float rotationSpeed = 180f; // 1ÃÊ¿¡ 180µµ¾¿ È¸ÀüÇÏµµ·Ï ¼³Á¤
+        float rotationSpeed = 180f; // 1ï¿½Ê¿ï¿½ 180ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         float angle = 0f;
         while (angle < 360f)
         {
-            // ½Ã°£¿¡ µû¶ó È¸Àü °¢µµ¸¦ Áõ°¡½ÃÅµ´Ï´Ù.
+            // ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Åµï¿½Ï´ï¿½.
             float rotationAmount = rotationSpeed * Time.deltaTime;
             target.Rotate(Vector3.forward, rotationAmount);
             target.Translate(dir * 2f * Time.deltaTime, Space.World);
@@ -176,20 +185,20 @@ public class Weapon : MonoBehaviour
         Vector2 targetPos = player.scanner.nearestTarget.position;
         Vector2 dir = targetPos - (Vector2)player.transform.position;
 
-        // °¢µµ Á¶Á¤ ¾øÀÌ ÇÑ ¹ß¸¸ ¹ß»ç
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ß¸ï¿½ ï¿½ß»ï¿½
         if (count == 1)
         {
             FireBullet(dir.normalized, GetAngleFromVector(dir));
         }
         else
         {
-            // ¹ß»ç °¢µµ °è»ê
-            float angleStep = 40f / (count - 1); // ÃÑ °¢µµ ¹üÀ§¸¦ È­»ì ¼ö¿¡ µû¶ó ³ª´®
-            float startAngle = -20f; // ½ÃÀÛ °¢µµ
+            // ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+            float angleStep = 40f / (count - 1); // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            float startAngle = -20f; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
             for (int index = 0; index < count; index++)
             {
-                // ÇöÀç ÀÎµ¦½º¿¡ ÇØ´çÇÏ´Â °¢µµ °è»ê
+                // ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
                 float currentAngle = startAngle + (angleStep * index);
                 Vector2 direction = RotateVector(dir.normalized, currentAngle);
 
@@ -206,7 +215,7 @@ public class Weapon : MonoBehaviour
         bullet.GetComponent<Bullet>().Init(damage, 0, direction);
     }
 
-    // 2D º¤ÅÍ¿¡¼­ °¢µµ¸¦ ¾ò´Â ÇÔ¼ö
+    // 2D ï¿½ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     float GetAngleFromVector(Vector2 dir)
     {
         float n = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -214,7 +223,7 @@ public class Weapon : MonoBehaviour
         return n;
     }
 
-    // 2D º¤ÅÍ È¸Àü ÇÔ¼ö
+    // 2D ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ ï¿½Ô¼ï¿½
     Vector2 RotateVector(Vector2 v, float degrees)
     {
         float radians = degrees * Mathf.Deg2Rad;
