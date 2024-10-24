@@ -97,11 +97,13 @@ public class EquipmentManager : MonoBehaviour
             {
                 slot.UpdateStatPanel(item); // 아이템 정보를 업데이트
                 slot.SetItemImage(item.itemImage); // 아이템 이미지 설정
+                slot.SetDraggable(false); // 장착된 아이템은 드래그 불가능하도록 설정
             }
             else
             {
                 slot.UpdateStatPanel(null); // 장착된 아이템이 없을 경우 null로 업데이트
                 slot.SetItemImage(null); // 이미지 초기화
+                slot.SetDraggable(true); // 드래그 가능하도록 설정 (해제 가능)
             }
         }
     }
@@ -179,6 +181,12 @@ public class EquipmentManager : MonoBehaviour
     {
         equippedItems.TryGetValue(slotID, out Item item); // 슬롯 ID로 아이템 검색
         return item; // 아이템 반환
+    }
+
+    // 장착된 아이템 목록을 반환하는 메서드
+    public List<Item> GetEquippedItems()
+    {
+        return new List<Item>(equippedItems.Values); // 장착된 아이템의 복사본을 반환
     }
 
     public Item GetItemByID(int itemID)

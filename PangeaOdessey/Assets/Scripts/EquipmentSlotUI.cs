@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
-using UnityEngine.UI; // Image 클래스를 사용하기 위해 추가합니다.
+using UnityEngine.UI;
+
 public class EquipmentSlotUI : BaseSlotUI
 {
     public int slotID;
@@ -10,6 +11,8 @@ public class EquipmentSlotUI : BaseSlotUI
     public TMP_Text attackText;
     public TMP_Text speedText;
     public Image itemImage; // Image 컴포넌트를 위한 변수를 추가합니다.
+
+    private Item currentItem; // 현재 장착된 아이템
 
     private void Start()
     {
@@ -120,5 +123,45 @@ public class EquipmentSlotUI : BaseSlotUI
                 SetItemImage(item.itemImage); // 아이템 이미지 설정
             }
         }
+    }
+
+    // 드래그 가능 여부 설정 메서드
+    public void SetDraggable(bool draggable)
+    {
+        if (draggable)
+        {
+            // 드래그 가능 상태일 때 이벤트 리스너 추가
+            EventTrigger trigger = gameObject.AddComponent<EventTrigger>();
+            EventTrigger.Entry entry = new EventTrigger.Entry { eventID = EventTriggerType.BeginDrag };
+            entry.callback.AddListener((data) => { OnBeginDrag((PointerEventData)data); });
+            trigger.triggers.Add(entry);
+
+            entry = new EventTrigger.Entry { eventID = EventTriggerType.EndDrag };
+            entry.callback.AddListener((data) => { OnEndDrag((PointerEventData)data); });
+            trigger.triggers.Add(entry);
+        }
+        else
+        {
+            // 드래그 불가능 상태일 때 이벤트 리스너 제거
+            EventTrigger trigger = GetComponent<EventTrigger>();
+            if (trigger != null)
+            {
+                Destroy(trigger); // 드래그 이벤트 제거
+            }
+        }
+    }
+
+    private void OnBeginDrag(PointerEventData eventData)
+    {
+        // 드래그 시작 시 처리 로직 구현
+        Debug.Log($"드래그 시작: 슬롯 ID {slotID}");
+        // 추가적인 드래그 처리 로직을 여기에 작성
+    }
+
+    private void OnEndDrag(PointerEventData eventData)
+    {
+        // 드래그 종료 시 처리 로직 구현
+        Debug.Log($"드래그 종료: 슬롯 ID {slotID}");
+        // 추가적인 드래그 종료 처리 로직을 여기에 작성
     }
 }
