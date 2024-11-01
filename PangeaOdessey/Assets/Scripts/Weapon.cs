@@ -31,6 +31,10 @@ public class Weapon : MonoBehaviour
         if (EquipmentManager.Instance != null)
         {
             float equipmentDamage = EquipmentManager.Instance.GetTotalStats().damage;
+            if (equipmentDamage == 0)
+            {
+                return;
+            }
             // EquipmentManager에서 가져온 추가 데미지를 더함
             damage *= equipmentDamage;
             Debug.Log("EquipmentManager로부터 추가된 데미지: " + equipmentDamage);
