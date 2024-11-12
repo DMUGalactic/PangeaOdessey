@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd6c6c997c9d136419bbff93fa62aa58, type: 3}
+  m_Name: Stage Info
+  m_EditorClassIdentifier: 
+  grassStage_1: 1
+  grassStage_2: 0
+  fireStage_1: 0
+  fireStage_2: 0
+  iceStage_1: 0
+  iceStage_2: 0
+  darkStage_1: 0
+  darkStage_2: 0
