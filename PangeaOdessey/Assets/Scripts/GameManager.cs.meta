@@ -3,7 +3,18 @@ guid: b75dd7fe76954d744bf3b4a6bd4889e4
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - Pentagram: {instanceID: 0}
+  - PentagramDirector: {instanceID: 0}
+  - pool: {instanceID: 0}
+  - player: {instanceID: 0}
+  - gold: {instanceID: 0}
+  - timer: {instanceID: 0}
+  - bossPrefab: {instanceID: 0}
+  - bossHUD: {fileID: 1482633305466880164, guid: 8bc0cb2403eb525469d4e8f1064353d2, type: 3}
+  - clear: {instanceID: 0}
+  - gameover: {instanceID: 0}
+  - stageData: {fileID: 11400000, guid: f8a1f1d3c42c2c04192af067eba4b9e5, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

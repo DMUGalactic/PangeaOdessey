@@ -915,6 +915,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1765a3a829e51ae419531fccb68772a1, type: 3}
+--- !u!1 &171050151 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1767710799206402511, guid: 1765a3a829e51ae419531fccb68772a1, type: 3}
+  m_PrefabInstance: {fileID: 171050150}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &227737130
 GameObject:
   m_ObjectHideFlags: 0
@@ -5281,7 +5286,7 @@ PrefabInstance:
     - target: {fileID: 5854243245224599532, guid: 35279fccab05f934daa29f87664d02f7, type: 3}
       propertyPath: bossHUD
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 171050151}
     - target: {fileID: 5854243245224599532, guid: 35279fccab05f934daa29f87664d02f7, type: 3}
       propertyPath: bossMode
       value: 1
@@ -5294,6 +5299,10 @@ PrefabInstance:
       propertyPath: Pentagram
       value: 
       objectReference: {fileID: 1994827884}
+    - target: {fileID: 5854243245224599532, guid: 35279fccab05f934daa29f87664d02f7, type: 3}
+      propertyPath: stageData
+      value: 
+      objectReference: {fileID: 11400000, guid: f8a1f1d3c42c2c04192af067eba4b9e5, type: 2}
     - target: {fileID: 5854243245224599532, guid: 35279fccab05f934daa29f87664d02f7, type: 3}
       propertyPath: bossHealth
       value: 2
