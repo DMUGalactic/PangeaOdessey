@@ -249,12 +249,12 @@ TextureImporter:
       name: Projectile_0
       rect:
         serializedVersion: 2
-        x: 512
-        y: 768
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 547
+        y: 770
+        width: 35
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -270,12 +270,12 @@ TextureImporter:
       name: Projectile_1
       rect:
         serializedVersion: 2
-        x: 640
-        y: 768
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 675
+        y: 770
+        width: 35
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

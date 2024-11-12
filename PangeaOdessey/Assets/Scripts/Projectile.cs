@@ -2,52 +2,41 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    Vector3 targetPosition;
     public float speed;
     public float damage; // 발사체의 데미지
+    public float lifeTime = 5f; // 발사체의 생명 시간
 
-    private bool facingRight = true;
+    private Vector3 moveDirection;
+    private float spawnTime;
+    private Vector3 playerDirection;
 
     public void Initialize(Vector3 target, float damageAmount)
     {
-        targetPosition = target;
-        damage = damageAmount;
 
-        // Set initial facing direction
-        if (targetPosition.x < transform.position.x)
-        {
-            Flip();
-        }
+        // 오프셋된 시작 위치에서 목표까지의 방향 계산 및 정규화
+        moveDirection = new Vector2(target.x, target.y);
+        
+
+        // 발사체의 회전 설정
+       float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+
+        damage = damageAmount;
+        spawnTime = Time.time;
+        playerDirection = target;
+
     }
 
     private void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        // 발사체를 목표 방향으로 계속 이동
+        transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
 
-        // Check if the projectile has reached the target position
-        if (Vector2.Distance(transform.position, targetPosition) < 0.1f)
+        // 일정 시간이 지나면 발사체 파괴
+        if (Time.time - spawnTime > lifeTime)
         {
             Destroy(gameObject);
         }
-
-        // Update the facing direction based on movement direction
-        Vector3 direction = targetPosition - transform.position;
-        if (direction.x > 0 && !facingRight)
-        {
-            Flip();
-        }
-        else if (direction.x < 0 && facingRight)
-        {
-            Flip();
-        }
-    }
-
-    private void Flip()
-    {
-        facingRight = !facingRight;
-        Vector3 scaler = transform.localScale;
-        scaler.x *= -1;
-        transform.localScale = scaler;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
     [Header("# Game Control")]
     public float gameTime;
     public float maxGameTime = 2 * 10f;
@@ -42,15 +44,14 @@ public class GameManager : MonoBehaviour
     public float maxBossHealth;
 
     [Header("# Boss Damage")]
-    public float bossDamageAmount = 10f;
+    public float bossDamageAmount = 20f;
+
 
     [Header("# Panel")]
     public GameObject clear;
     public GameObject gameover;
 
-    public Sprite[] headSpriteList;
-    public string[] headNameList;
-    public int[] headStatList;
+    public StageData stageData;
 
     void Awake()
     {
@@ -71,9 +72,10 @@ public class GameManager : MonoBehaviour
     {
         gameTime += Time.deltaTime;
 
-        if (bossMode == 1 && gameTime >= bossSpawnTime && !bossSpawned)
+        if (bossMode == 1 && gameTime >= bossSpawnTime && !bossSpawned) //
         {
             SpawnBoss();
+            Debug.Log("보스 스폰");
         }
 
         if (gameTime > pentagramSpawnTime && !pentagramSpawned)//kssAppend
@@ -88,7 +90,6 @@ public class GameManager : MonoBehaviour
             string timeString = string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
             timer.text = timeString;
         }
-
         if (bossMode == 0 && gameTime >= 300 && health > 0)
         {
             // 일반맵 게임 클리어 시
@@ -98,30 +99,20 @@ public class GameManager : MonoBehaviour
         }
 
         gold.text = bitCoin.ToString() + "G";
-
-        if (health <= 0)
+        if (health < 0)
         {
             Debug.Log("플레이어 죽음");
             PlayerDead();
         }
     }
-
-    void SpawnBoss()
+    public float GetMaxHealth()
     {
-        Vector2 spawnPosition = (Vector2)player.transform.position + UnityEngine.Random.insideUnitCircle * spawnRadius;
-        GameObject boss = Instantiate(bossPrefab, spawnPosition, Quaternion.identity);
-
-        // 보스 체력 설정
-        BossControls bossControls = boss.GetComponent<BossControls>();
-        maxBossHealth = bossControls.health;
-        bossHealth = maxBossHealth;
-
-        if (bossHUD != null)
+        float equipmentHp = 0f;
+        if (EquipmentManager.Instance != null)
         {
-            bossHUD.SetActive(true); // 보스가 스폰될 때 HP UI 활성화
+            equipmentHp = EquipmentManager.Instance.GetTotalStats().hp;
         }
-
-        bossSpawned = true; // 보스를 한 번만 스폰되도록 설정
+        return baseMaxHealth + equipmentHp;
     }
 
         void SpawnPentaGram()//kssAppend
@@ -153,10 +144,27 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void SpawnBoss()
+    {
+        Vector2 spawnPosition = (Vector2)player.transform.position + UnityEngine.Random.insideUnitCircle * spawnRadius;
+        GameObject boss = Instantiate(bossPrefab, spawnPosition, Quaternion.identity);
+
+        // 보스 체력 설정
+        bossHealth = maxBossHealth;
+
+        if (bossHUD != null)
+        {
+            Debug.Log("HUD 활성화");
+            bossHUD.SetActive(true); // 보스가 스폰될 때 HP UI 활성화
+        }
+
+        bossSpawned = true; // 보스를 한 번만 스폰되도록 설정
+    }
+
+
     void PlayerDead()
     {
-        if (gameover != null)
-            gameover.SetActive(true);
+        gameover.SetActive(true);
     }
 
     public void TakeBossDamage(float amount)
@@ -167,25 +175,52 @@ public class GameManager : MonoBehaviour
         // 필요 시 보스가 죽었을 때 로직 추가
         if (bossHealth <= 0)
         {
-            BossDead();
+            Invoke("BossDead", 1.03f);
         }
     }
 
     void BossDead()
     {
         Time.timeScale = 0f;
-        if (clear != null)
-            clear.SetActive(true);
+        clear.SetActive(true);
     }
 
-    // 추가된 메서드: EquipmentManager의 HP를 포함한 최대 체력 계산
-    public float GetMaxHealth()
+    public void StageClear()
     {
-        float equipmentHp = 0f;
-        if (EquipmentManager.Instance != null)
+        string currentScene = SceneManager.GetActiveScene().name;
+        if (stageData != null)
         {
-            equipmentHp = EquipmentManager.Instance.GetTotalStats().hp;
+            switch (currentScene)
+            {
+                case "Grass":
+                    stageData.grassStage_2 = true;
+                    break;
+                case "GrassBoss":
+                    stageData.iceStage_1 = true;
+                    break;
+                case "Ice":
+                    stageData.iceStage_2 = true;
+                    break;
+                case "IceBoss":
+                    stageData.fireStage_1 = true;
+                    break;
+                case "Fire":
+                    stageData.fireStage_2 = true;
+                    break;
+                case "FireBoss":
+                    stageData.darkStage_1 = true;
+                    break;
+                case "Dark":
+                    stageData.darkStage_2 = true;
+                    break;
+
+                default:
+                    break;
+
+            }
+
         }
-        return baseMaxHealth + equipmentHp;
+
     }
+
 }
