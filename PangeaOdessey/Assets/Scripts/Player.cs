@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
         {
             GameManager.instance.health -= Time.deltaTime * 10;
         }
-        if (collision.gameObject.CompareTag("BigFire"))
+        else if (collision.gameObject.CompareTag("BigFire"))
         {
             GameManager.instance.health -= Time.deltaTime * 10;
         }

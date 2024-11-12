@@ -1,6 +1,11 @@
 fileFormatVersion: 2
-guid: 85b473fcc64af7a4da6ee5ad17bec008
+<<<<<<<< HEAD:Assets/PixelFantasy/PixelMonsters/BossPack1/Dragon/GreenDragon_fireball.prefab.meta
+guid: 06d24c9141c0a2847bf62fea1e95aa0f
+PrefabImporter:
+========
+guid: db62a8fa640666b4f9653aa7b8e141a2
 DefaultImporter:
+>>>>>>>> feature_SSH:Assets/Scenes/Fire.unity.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
