@@ -64,7 +64,8 @@ public class GameManager : MonoBehaviour
         bitCoin = 0;
         if (bossHUD != null)
         {
-            bossHUD.SetActive(false); // 게임 시작 시 보스 HP UI 비활성화
+            bossHUD.SetActive(false);
+             // 게임 시작 시 보스 HP UI 비활성화
         }
     }
 

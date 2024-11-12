@@ -10,7 +10,7 @@ MonoImporter:
   - player: {instanceID: 0}
   - gold: {instanceID: 0}
   - timer: {instanceID: 0}
-  - bossPrefab: {instanceID: 0}
+  - bossPrefab: {fileID: 371799777075677728, guid: d821f4b3330302f48aa065bfd75386e3, type: 3}
   - bossHUD: {fileID: 1482633305466880164, guid: 8bc0cb2403eb525469d4e8f1064353d2, type: 3}
   - clear: {instanceID: 0}
   - gameover: {instanceID: 0}

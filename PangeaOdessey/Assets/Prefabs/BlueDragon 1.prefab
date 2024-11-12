@@ -69,19 +69,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f0ad4b6a0498dd4f8b0ddc42cb5ae3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossRunSpeed: 4
-  attackCooldown: 2
+  collisionDamage: 5
+  meleeAttackDamage: 10
+  bossRunSpeed: 2
+  meleeAttackCoolTime: 2
+  fireCooldown: 3
   followDistance: 20
   attackDistance: 4
   rangeAttackDistance: 7
-  detectionRadius: 10
-  collisionDamage: 5
   projectilePrefab: {fileID: 1547789051345944078, guid: 0071ad87ee8a9b444947fd3cceb85afe, type: 3}
-  projectileSpawnInterval: 2
-  projectileSpawnDistance: 10
   projectileDamage: 5
   bigFirePrefab: {fileID: 7455328089217502733, guid: c648c40b3aae2e342a075a472651b241, type: 3}
-  Monster: {fileID: 0}
 --- !u!50 &336498791693560901
 Rigidbody2D:
   serializedVersion: 4

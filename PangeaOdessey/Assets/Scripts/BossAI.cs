@@ -26,7 +26,7 @@ using UnityEngine;
 
         [Header("Speed")]
         [SerializeField]
-        private float bossRunSpeed = 1f; // 보스 이동속도
+        private float bossRunSpeed = 0.7f; // 보스 이동속도
         
         [Header("CoolTime")]
         [SerializeField]
