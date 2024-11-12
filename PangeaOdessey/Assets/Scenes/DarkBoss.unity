@@ -3961,10 +3961,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4eb0c3739c6b74e9549aae31c38166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 2
-  damageInterval: 2
-  damageEffectPrefab: {fileID: 0}
-  nextDamageTime: 0
 --- !u!114 &828808508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3977,10 +3973,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4eb0c3739c6b74e9549aae31c38166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 2
-  damageInterval: 2
-  damageEffectPrefab: {fileID: 0}
-  nextDamageTime: 0
 --- !u!114 &828808509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3993,10 +3985,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4eb0c3739c6b74e9549aae31c38166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 2
-  damageInterval: 2
-  damageEffectPrefab: {fileID: 0}
-  nextDamageTime: 0
 --- !u!114 &828808510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4009,10 +3997,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4eb0c3739c6b74e9549aae31c38166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 2
-  damageInterval: 2
-  damageEffectPrefab: {fileID: 0}
-  nextDamageTime: 0
 --- !u!1 &835044803
 GameObject:
   m_ObjectHideFlags: 0
@@ -7761,13 +7745,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2070896615}
     - target: {fileID: 5854243245224599532, guid: 35279fccab05f934daa29f87664d02f7, type: 3}
+      propertyPath: stageData
+      value: 
+      objectReference: {fileID: 11400000, guid: f8a1f1d3c42c2c04192af067eba4b9e5, type: 2}
+    - target: {fileID: 5854243245224599532, guid: 35279fccab05f934daa29f87664d02f7, type: 3}
       propertyPath: bossHealth
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5854243245224599532, guid: 35279fccab05f934daa29f87664d02f7, type: 3}
       propertyPath: bossPrefab
       value: 
-      objectReference: {fileID: 8579619584123534180, guid: a4bd4332ad5a78e4b9a6a15fc5a72f96, type: 3}
+      objectReference: {fileID: 371799777075677728, guid: d821f4b3330302f48aa065bfd75386e3, type: 3}
     - target: {fileID: 5854243245224599532, guid: 35279fccab05f934daa29f87664d02f7, type: 3}
       propertyPath: maxGameTime
       value: 300
