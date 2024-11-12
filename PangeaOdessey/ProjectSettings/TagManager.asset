@@ -13,6 +13,10 @@ TagManager:
   - Shop1
   - Shop3
   - Ground
+  - Fireball
+  - BigFire
+  - MellAttack
+  - Item
   layers:
   - Default
   - TransparentFX
