@@ -13179,7 +13179,7 @@ PrefabInstance:
     - target: {fileID: 5854243245224599532, guid: 35279fccab05f934daa29f87664d02f7, type: 3}
       propertyPath: bossPrefab
       value: 
-      objectReference: {fileID: 8579619584123534180, guid: a4bd4332ad5a78e4b9a6a15fc5a72f96, type: 3}
+      objectReference: {fileID: 371799777075677728, guid: d821f4b3330302f48aa065bfd75386e3, type: 3}
     - target: {fileID: 5854243245224599532, guid: 35279fccab05f934daa29f87664d02f7, type: 3}
       propertyPath: maxGameTime
       value: 300
