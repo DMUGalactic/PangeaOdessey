@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Stage Info
   m_EditorClassIdentifier: 
   grassStage_1: 1
-  grassStage_2: 0
+  grassStage_2: 1
   fireStage_1: 0
   fireStage_2: 0
-  iceStage_1: 0
+  iceStage_1: 1
   iceStage_2: 0
   darkStage_1: 0
   darkStage_2: 0

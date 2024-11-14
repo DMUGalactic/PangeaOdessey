@@ -95,8 +95,11 @@ public class GameManager : MonoBehaviour
         {
             // 일반맵 게임 클리어 시
             // 클리어 패널 활성화 게임 일시정지
-            if (clear != null)
+            if (clear != null){
+                StageClear();
                 clear.SetActive(true);
+            }
+            
         }
 
         gold.text = bitCoin.ToString() + "G";
@@ -182,6 +185,7 @@ public class GameManager : MonoBehaviour
 
     void BossDead()
     {
+        StageClear();
         Time.timeScale = 0f;
         clear.SetActive(true);
     }

@@ -158,7 +158,7 @@ using UnityEngine;
         INode.ENodeState CheckBossHP()
         {
             // 보스 체력확인
-            if(GameManager.instance.bossHealth < 90){
+            if(GameManager.instance.bossHealth < 200){
                 return INode.ENodeState.ENS_Success;
             }
             return INode.ENodeState.ENS_Failure;
